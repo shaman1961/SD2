@@ -1,0 +1,5832 @@
+{
+    "гибралтар": {
+        "center_x": 523,
+        "center_y": 920.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "севилья": {
+        "center_x": 452.5,
+        "center_y": 973,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "уэльва": {
+        "center_x": 417.5,
+        "center_y": 1089.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "фару": {
+        "center_x": 179,
+        "center_y": 1122,
+        "color": [
+            85,
+            115,
+            96
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "эвора": {
+        "center_x": 250,
+        "center_y": 1228,
+        "color": [
+            85,
+            115,
+            96
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лиссабон": {
+        "center_x": 198.5,
+        "center_y": 1400.5,
+        "color": [
+            85,
+            115,
+            96
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "гуарда": {
+        "center_x": 338.5,
+        "center_y": 1401,
+        "color": [
+            85,
+            115,
+            96
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "порту": {
+        "center_x": 363.5,
+        "center_y": 1565,
+        "color": [
+            85,
+            115,
+            96
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "ла-корунья": {
+        "center_x": 417,
+        "center_y": 1725.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бадахос": {
+        "center_x": 521.5,
+        "center_y": 1208.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "саламанка": {
+        "center_x": 533.0,
+        "center_y": 1338.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вальядолид": {
+        "center_x": 584.0,
+        "center_y": 1482.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бургос": {
+        "center_x": 687.0,
+        "center_y": 1595.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "овьедо": {
+        "center_x": 725.0,
+        "center_y": 1689.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "бильбао": {
+        "center_x": 1001.5,
+        "center_y": 1612.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "сарагоса": {
+        "center_x": 1023.5,
+        "center_y": 1486.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "уэска": {
+        "center_x": 1263.5,
+        "center_y": 1515.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "таррагона": {
+        "center_x": 1185.5,
+        "center_y": 1356.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "барселона": {
+        "center_x": 1384.0,
+        "center_y": 1388.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сигуэнса": {
+        "center_x": 876.5,
+        "center_y": 1468.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кастельон": {
+        "center_x": 1035.5,
+        "center_y": 1303.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "мадрид": {
+        "center_x": 775.0,
+        "center_y": 1295.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "валенсия": {
+        "center_x": 968.5,
+        "center_y": 1195.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "альбасете": {
+        "center_x": 719.5,
+        "center_y": 1123.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мурсия": {
+        "center_x": 944.5,
+        "center_y": 1012.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "альмерия": {
+        "center_x": 696.0,
+        "center_y": 969.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дакс": {
+        "center_x": 1092.0,
+        "center_y": 1694.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "по": {
+        "center_x": 1265.5,
+        "center_y": 1547.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "перпиньян": {
+        "center_x": 1493.5,
+        "center_y": 1565.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ош": {
+        "center_x": 1234.0,
+        "center_y": 1687.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тулуза": {
+        "center_x": 1381.0,
+        "center_y": 1659.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "бордо": {
+        "center_x": 1153.5,
+        "center_y": 1815.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бержерак": {
+        "center_x": 1321.0,
+        "center_y": 1791.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "клермон-ферран": {
+        "center_x": 1518.5,
+        "center_y": 1821.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сент-этьен": {
+        "center_x": 1572.0,
+        "center_y": 1707.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "ним": {
+        "center_x": 1685.5,
+        "center_y": 1621.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лион": {
+        "center_x": 1750.5,
+        "center_y": 1716.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "ницца": {
+        "center_x": 1873.0,
+        "center_y": 1586.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гренобль": {
+        "center_x": 1851.5,
+        "center_y": 1748.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "безансон": {
+        "center_x": 1768.0,
+        "center_y": 1899.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "виши": {
+        "center_x": 1581.0,
+        "center_y": 1990.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "шатору": {
+        "center_x": 1448.5,
+        "center_y": 2008.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "лимож": {
+        "center_x": 1361.5,
+        "center_y": 1888.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ла-рошель": {
+        "center_x": 1203.5,
+        "center_y": 1907.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "шоле": {
+        "center_x": 1161.5,
+        "center_y": 2065.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тур": {
+        "center_x": 1313.5,
+        "center_y": 2038.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "бурж": {
+        "center_x": 1506.5,
+        "center_y": 2134.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дижон": {
+        "center_x": 1767.5,
+        "center_y": 2105.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "мюлуз": {
+        "center_x": 1923.5,
+        "center_y": 2092.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "страсбург": {
+        "center_x": 1954.5,
+        "center_y": 2245.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "реймс": {
+        "center_x": 1782.0,
+        "center_y": 2295.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "труа": {
+        "center_x": 1656.5,
+        "center_y": 2192.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "париж": {
+        "center_x": 1452.0,
+        "center_y": 2249.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "ле-ман": {
+        "center_x": 1296.5,
+        "center_y": 2202.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "анже": {
+        "center_x": 1147.5,
+        "center_y": 2193.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "ренн": {
+        "center_x": 1012.0,
+        "center_y": 2284.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кан": {
+        "center_x": 1270.0,
+        "center_y": 2364.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дьепп": {
+        "center_x": 1405.5,
+        "center_y": 2412.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "дюнкерк": {
+        "center_x": 1534.0,
+        "center_y": 2508.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "компьень": {
+        "center_x": 1580.0,
+        "center_y": 2381.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "гент": {
+        "center_x": 1663.5,
+        "center_y": 2564.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "монс": {
+        "center_x": 1747.5,
+        "center_y": 2477.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "брюссель": {
+        "center_x": 1786.5,
+        "center_y": 2558.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "льеж": {
+        "center_x": 1848.5,
+        "center_y": 2414.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "амстердам": {
+        "center_x": 1778.0,
+        "center_y": 2665.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "арнем": {
+        "center_x": 1918.0,
+        "center_y": 2669.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гронинген": {
+        "center_x": 1940.0,
+        "center_y": 2770.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "норден": {
+        "center_x": 2072.5,
+        "center_y": 2784.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "бремен": {
+        "center_x": 2180.5,
+        "center_y": 2828.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "киль": {
+        "center_x": 2223.0,
+        "center_y": 2909.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гамбург": {
+        "center_x": 2304.0,
+        "center_y": 2850.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "росток": {
+        "center_x": 2445.0,
+        "center_y": 2816.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "штральзунд": {
+        "center_x": 2576.0,
+        "center_y": 2746.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кюстрин": {
+        "center_x": 2717.5,
+        "center_y": 2660.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "берлин": {
+        "center_x": 2544.5,
+        "center_y": 2670.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "магдебург": {
+        "center_x": 2404.0,
+        "center_y": 2705.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гёттинген": {
+        "center_x": 2265.5,
+        "center_y": 2661.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ганновер": {
+        "center_x": 2220.5,
+        "center_y": 2740.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "мюнстер": {
+        "center_x": 2082.0,
+        "center_y": 2650.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дортмунд": {
+        "center_x": 1984.0,
+        "center_y": 2545.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "кассель": {
+        "center_x": 2137.0,
+        "center_y": 2509.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эрфурт": {
+        "center_x": 2263.5,
+        "center_y": 2464.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лейпциг": {
+        "center_x": 2397.0,
+        "center_y": 2537.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "дрезден": {
+        "center_x": 2446.0,
+        "center_y": 2466.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "коттбус": {
+        "center_x": 2601.0,
+        "center_y": 2543.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "вроцлав": {
+        "center_x": 2821.0,
+        "center_y": 2467.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ополе": {
+        "center_x": 2884.5,
+        "center_y": 2484.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "нюрнберг": {
+        "center_x": 2339.0,
+        "center_y": 2265.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "франкфурт-на-майне": {
+        "center_x": 2181.0,
+        "center_y": 2338.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "саарбрюкен": {
+        "center_x": 1990.0,
+        "center_y": 2355.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кёльн": {
+        "center_x": 1945.0,
+        "center_y": 2425.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "штутгарт": {
+        "center_x": 2131.0,
+        "center_y": 2206.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "фрайбург": {
+        "center_x": 2074.0,
+        "center_y": 2130.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "равенсбург": {
+        "center_x": 2203.5,
+        "center_y": 2095.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мюнхен": {
+        "center_x": 2396.5,
+        "center_y": 2114.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "регенсбург": {
+        "center_x": 2441.0,
+        "center_y": 2243.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "женева": {
+        "center_x": 1866.0,
+        "center_y": 1906.0,
+        "color": [
+            149,
+            85,
+            14
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "берн": {
+        "center_x": 1962.0,
+        "center_y": 1874.5,
+        "color": [
+            149,
+            85,
+            14
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "цюрих": {
+        "center_x": 2027.0,
+        "center_y": 2007.0,
+        "color": [
+            149,
+            85,
+            14
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "кур": {
+        "center_x": 2145.0,
+        "center_y": 1922.0,
+        "color": [
+            149,
+            85,
+            14
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лех": {
+        "center_x": 2272.0,
+        "center_y": 1988.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "инсбрук": {
+        "center_x": 2476.0,
+        "center_y": 1983.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "грац": {
+        "center_x": 2653.5,
+        "center_y": 1989.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "зальцбург": {
+        "center_x": 2572.5,
+        "center_y": 2095.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "вена": {
+        "center_x": 2738.0,
+        "center_y": 2117.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "усти-над-лабой": {
+        "center_x": 2520.5,
+        "center_y": 2354.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "пльзень": {
+        "center_x": 2523.5,
+        "center_y": 2265.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кутна-гора": {
+        "center_x": 2715.5,
+        "center_y": 2292.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "прага": {
+        "center_x": 2712.0,
+        "center_y": 2389.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "табор": {
+        "center_x": 2714.5,
+        "center_y": 2209.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "брно": {
+        "center_x": 2845.5,
+        "center_y": 2254.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "острава": {
+        "center_x": 2889.0,
+        "center_y": 2330.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "братислава": {
+        "center_x": 2894.0,
+        "center_y": 2136.5,
+        "color": [
+            79,
+            119,
+            207
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "жилина": {
+        "center_x": 3005.5,
+        "center_y": 2249.0,
+        "color": [
+            79,
+            119,
+            207
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "банска-бистрица": {
+        "center_x": 3025.5,
+        "center_y": 2160.5,
+        "color": [
+            79,
+            119,
+            207
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кошице": {
+        "center_x": 3215.5,
+        "center_y": 2202.5,
+        "color": [
+            79,
+            119,
+            207
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "данциг": {
+        "center_x": 2880.5,
+        "center_y": 2858.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "познань": {
+        "center_x": 2875.5,
+        "center_y": 2667.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "ченстохова": {
+        "center_x": 3011.5,
+        "center_y": 2482.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "краков": {
+        "center_x": 3078.5,
+        "center_y": 2324.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "кельце": {
+        "center_x": 3155.0,
+        "center_y": 2437.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лодзь": {
+        "center_x": 3095.0,
+        "center_y": 2580.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "торунь": {
+        "center_x": 3061.0,
+        "center_y": 2731.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "варшава": {
+        "center_x": 3195.0,
+        "center_y": 2670.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "люблин": {
+        "center_x": 3304.0,
+        "center_y": 2578.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "пинск": {
+        "center_x": 3458.0,
+        "center_y": 2622.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бельск": {
+        "center_x": 3362.5,
+        "center_y": 2710.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "сувалки": {
+        "center_x": 3296.5,
+        "center_y": 2817.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гродно": {
+        "center_x": 3398.5,
+        "center_y": 2854.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вильнюс": {
+        "center_x": 3430.5,
+        "center_y": 2973.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "свенцяны": {
+        "center_x": 3575.5,
+        "center_y": 3080.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "молодечно": {
+        "center_x": 3543.5,
+        "center_y": 2981.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лида": {
+        "center_x": 3521.5,
+        "center_y": 2888.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "барановичи": {
+        "center_x": 3536.5,
+        "center_y": 2752.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ровно": {
+        "center_x": 3577.5,
+        "center_y": 2579.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "эльбинг": {
+        "center_x": 2998.5,
+        "center_y": 2820.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ортельсбург": {
+        "center_x": 3139.5,
+        "center_y": 2859.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кёнигсберг": {
+        "center_x": 3152.0,
+        "center_y": 2974.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мемель": {
+        "center_x": 3191.5,
+        "center_y": 3070.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "шауляй": {
+        "center_x": 3298.0,
+        "center_y": 3058.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "алитус": {
+        "center_x": 3284.5,
+        "center_y": 2946.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "каунас": {
+        "center_x": 3363.5,
+        "center_y": 2994.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "екабпилс": {
+        "center_x": 3441.0,
+        "center_y": 3122.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "елгава": {
+        "center_x": 3318.0,
+        "center_y": 3177.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "виндава": {
+        "center_x": 3199.0,
+        "center_y": 3205.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рига": {
+        "center_x": 3417.5,
+        "center_y": 3270.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "даугавпилс": {
+        "center_x": 3555.0,
+        "center_y": 3201.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "дьёр": {
+        "center_x": 2845.0,
+        "center_y": 1994.0,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "будапешт": {
+        "center_x": 2970.5,
+        "center_y": 2029.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "мишкольц": {
+        "center_x": 3117.0,
+        "center_y": 2068.0,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "дебрецен": {
+        "center_x": 3228.0,
+        "center_y": 2026.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сегед": {
+        "center_x": 3079.0,
+        "center_y": 1935.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "печ": {
+        "center_x": 2926.5,
+        "center_y": 1889.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "турин": {
+        "center_x": 1999.0,
+        "center_y": 1823.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "милан": {
+        "center_x": 2194.0,
+        "center_y": 1800.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тренто": {
+        "center_x": 2306.0,
+        "center_y": 1862.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "венеция": {
+        "center_x": 2483.0,
+        "center_y": 1803.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "генуя": {
+        "center_x": 2027.0,
+        "center_y": 1672.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "специя": {
+        "center_x": 2240.0,
+        "center_y": 1644.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "феррара": {
+        "center_x": 2364.0,
+        "center_y": 1666.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "римини": {
+        "center_x": 2433.5,
+        "center_y": 1550.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "флоренция": {
+        "center_x": 2284.5,
+        "center_y": 1538.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "рим": {
+        "center_x": 2383.0,
+        "center_y": 1398.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "пескара": {
+        "center_x": 2551.0,
+        "center_y": 1433.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "кассино": {
+        "center_x": 2553.5,
+        "center_y": 1324.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "фоджа": {
+        "center_x": 2756.5,
+        "center_y": 1279.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "неаполь": {
+        "center_x": 2710.5,
+        "center_y": 1181.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "таранто": {
+        "center_x": 2967.5,
+        "center_y": 1143.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "реджио-ди-калабрия": {
+        "center_x": 2864.0,
+        "center_y": 973.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "палермо": {
+        "center_x": 2601.5,
+        "center_y": 774.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "катанья": {
+        "center_x": 2650.0,
+        "center_y": 711.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сардиния": {
+        "center_x": 2063.0,
+        "center_y": 1205.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "корсика": {
+        "center_x": 2083.0,
+        "center_y": 1418.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "щецин": {
+        "center_x": 2732.5,
+        "center_y": 2809.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ужгород": {
+        "center_x": 3418.5,
+        "center_y": 2172.0,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "замосць": {
+        "center_x": 3336.0,
+        "center_y": 2422.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "пшемысль": {
+        "center_x": 3294.0,
+        "center_y": 2331.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "стрый": {
+        "center_x": 3469.5,
+        "center_y": 2224.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "львов": {
+        "center_x": 3521.5,
+        "center_y": 2325.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "ковель": {
+        "center_x": 3451.5,
+        "center_y": 2456.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тернополь": {
+        "center_x": 3614.0,
+        "center_y": 2446.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "станиславов": {
+        "center_x": 3642.5,
+        "center_y": 2277.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гулбене": {
+        "center_x": 3512.5,
+        "center_y": 3328.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "таллин": {
+        "center_x": 3358.5,
+        "center_y": 3421.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "нарва": {
+        "center_x": 3455.5,
+        "center_y": 3469.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тарту": {
+        "center_x": 3476.0,
+        "center_y": 3402.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "тори": {
+        "center_x": 3397.5,
+        "center_y": 3359.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "любляна": {
+        "center_x": 2609.0,
+        "center_y": 1867.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "марибор": {
+        "center_x": 2703.5,
+        "center_y": 1904.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "загреб": {
+        "center_x": 2713.5,
+        "center_y": 1796.5,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "беловар": {
+        "center_x": 2811.5,
+        "center_y": 1833.0,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "баня-лука": {
+        "center_x": 2794.5,
+        "center_y": 1680.0,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "риека": {
+        "center_x": 2696.0,
+        "center_y": 1714.5,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сплит": {
+        "center_x": 2810.0,
+        "center_y": 1558.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "сараево": {
+        "center_x": 2933.0,
+        "center_y": 1657.5,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "осиек": {
+        "center_x": 3001.0,
+        "center_y": 1793.5,
+        "color": [
+            45,
+            59,
+            110
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "нови-сад": {
+        "center_x": 3134.5,
+        "center_y": 1819.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "белград": {
+        "center_x": 3144.0,
+        "center_y": 1694.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "ужице": {
+        "center_x": 3086.5,
+        "center_y": 1608.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мостар": {
+        "center_x": 2992.5,
+        "center_y": 1492.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "подгорица": {
+        "center_x": 3148.5,
+        "center_y": 1457.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "нови-пазар": {
+        "center_x": 3197.5,
+        "center_y": 1544.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ниш": {
+        "center_x": 3299.0,
+        "center_y": 1602.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "приштина": {
+        "center_x": 3288.5,
+        "center_y": 1440.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "скопье": {
+        "center_x": 3351.5,
+        "center_y": 1344.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "тирана": {
+        "center_x": 3227.0,
+        "center_y": 1301.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "янина": {
+        "center_x": 3300.5,
+        "center_y": 1189.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "эдесса": {
+        "center_x": 3393.0,
+        "center_y": 1261.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "салоники": {
+        "center_x": 3518.5,
+        "center_y": 1299.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "кавала": {
+        "center_x": 3623.5,
+        "center_y": 1356.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ларисса": {
+        "center_x": 3452.5,
+        "center_y": 1168.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "агринион": {
+        "center_x": 3395.0,
+        "center_y": 1074.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кефалония": {
+        "center_x": 3291.5,
+        "center_y": 973.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "афины": {
+        "center_x": 3523.0,
+        "center_y": 992.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "киклады": {
+        "center_x": 3624.5,
+        "center_y": 1015.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "коринф": {
+        "center_x": 3473.0,
+        "center_y": 883.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "крит": {
+        "center_x": 3730.0,
+        "center_y": 644.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "горна-джумая": {
+        "center_x": 3494.0,
+        "center_y": 1379.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "софья": {
+        "center_x": 3438.0,
+        "center_y": 1463.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "враца": {
+        "center_x": 3424.5,
+        "center_y": 1595.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "плевна": {
+        "center_x": 3587.5,
+        "center_y": 1561.0,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "пловдив": {
+        "center_x": 3590.5,
+        "center_y": 1441.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "варна": {
+        "center_x": 3725.5,
+        "center_y": 1527.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "добрич": {
+        "center_x": 3726.5,
+        "center_y": 1649.5,
+        "color": [
+            112,
+            112,
+            112
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бухарест": {
+        "center_x": 3585.5,
+        "center_y": 1708.0,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "крайова": {
+        "center_x": 3437.0,
+        "center_y": 1729.5,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тимишоара": {
+        "center_x": 3261.5,
+        "center_y": 1814.5,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "арад": {
+        "center_x": 3270.5,
+        "center_y": 1956.0,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "сату-маре": {
+        "center_x": 3349.0,
+        "center_y": 2073.0,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "клуж-напока": {
+        "center_x": 3425.0,
+        "center_y": 1992.0,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "сибиу": {
+        "center_x": 3383.0,
+        "center_y": 1872.0,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "брашов": {
+        "center_x": 3576.0,
+        "center_y": 1859.5,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бузэу": {
+        "center_x": 3659.5,
+        "center_y": 1846.5,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "бакэу": {
+        "center_x": 3544.5,
+        "center_y": 2026.5,
+        "color": [
+            105,
+            152,
+            94
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "яссы": {
+        "center_x": 3647.0,
+        "center_y": 2047.5,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тулча": {
+        "center_x": 3802.0,
+        "center_y": 1811.0,
+        "color": [
+            158,
+            150,
+            100
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "измаил": {
+        "center_x": 3844.0,
+        "center_y": 2003.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кишинёв": {
+        "center_x": 3689.5,
+        "center_y": 2127.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "могилёв-подольский": {
+        "center_x": 3816.5,
+        "center_y": 2240.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "балта": {
+        "center_x": 3891.5,
+        "center_y": 2147.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "одесса": {
+        "center_x": 3957.5,
+        "center_y": 2055.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "херсон": {
+        "center_x": 4086.5,
+        "center_y": 2038.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мелитополь": {
+        "center_x": 4250.5,
+        "center_y": 2076.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "евпатория": {
+        "center_x": 4157.0,
+        "center_y": 1915.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "севастополь": {
+        "center_x": 4233.0,
+        "center_y": 1862.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "новороссийск": {
+        "center_x": 4530.0,
+        "center_y": 1928.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сухум": {
+        "center_x": 4823.0,
+        "center_y": 1755.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тбилиси": {
+        "center_x": 5060.0,
+        "center_y": 1686.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "майкоп": {
+        "center_x": 4853.5,
+        "center_y": 1854.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ворошиловск": {
+        "center_x": 4985.5,
+        "center_y": 1906.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "элиста": {
+        "center_x": 4941.5,
+        "center_y": 2112.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "армавир": {
+        "center_x": 4777.5,
+        "center_y": 1959.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тихорецк": {
+        "center_x": 4628.0,
+        "center_y": 2112.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "краснодар": {
+        "center_x": 4494.0,
+        "center_y": 2079.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сальск": {
+        "center_x": 4772.5,
+        "center_y": 2154.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "котельниковский": {
+        "center_x": 4928.0,
+        "center_y": 2283.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "чёрный яр": {
+        "center_x": 5073.5,
+        "center_y": 2321.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "сталинград": {
+        "center_x": 4998.5,
+        "center_y": 2446.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "суровикино": {
+        "center_x": 4884.0,
+        "center_y": 2439.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "шахты": {
+        "center_x": 4813.0,
+        "center_y": 2348.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "константиновск": {
+        "center_x": 4664.0,
+        "center_y": 2289.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ростов": {
+        "center_x": 4509.0,
+        "center_y": 2270.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сталино": {
+        "center_x": 4360.0,
+        "center_y": 2258.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "запорожье": {
+        "center_x": 4197.5,
+        "center_y": 2287.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "днепропетровск": {
+        "center_x": 4137.5,
+        "center_y": 2176.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "кривой рог": {
+        "center_x": 4020.5,
+        "center_y": 2213.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "черкассы": {
+        "center_x": 3941.5,
+        "center_y": 2325.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "винница": {
+        "center_x": 3776.0,
+        "center_y": 2383.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "киев": {
+        "center_x": 3923.0,
+        "center_y": 2458.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "полтава": {
+        "center_x": 4063.0,
+        "center_y": 2370.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сумы": {
+        "center_x": 4113.0,
+        "center_y": 2474.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "харьков": {
+        "center_x": 4300.0,
+        "center_y": 2425.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "белгород": {
+        "center_x": 4308.5,
+        "center_y": 2512.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "беловодск": {
+        "center_x": 4436.5,
+        "center_y": 2426.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "россошь": {
+        "center_x": 4473.0,
+        "center_y": 2550.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "каменск-шахтинский": {
+        "center_x": 4546.5,
+        "center_y": 2412.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "богучар": {
+        "center_x": 4613.0,
+        "center_y": 2542.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кашары": {
+        "center_x": 4663.5,
+        "center_y": 2398.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "боковская": {
+        "center_x": 4751.0,
+        "center_y": 2486.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "фролово": {
+        "center_x": 4886.0,
+        "center_y": 2572.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "камышин": {
+        "center_x": 5059.5,
+        "center_y": 2591.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "урюпинск": {
+        "center_x": 4888.0,
+        "center_y": 2682.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "павловск": {
+        "center_x": 4691.0,
+        "center_y": 2627.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "свобода": {
+        "center_x": 4516.5,
+        "center_y": 2672.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "острогожск": {
+        "center_x": 4413.0,
+        "center_y": 2651.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "курск": {
+        "center_x": 4253.0,
+        "center_y": 2656.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "конотоп": {
+        "center_x": 4053.0,
+        "center_y": 2579.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "чернигов": {
+        "center_x": 3979.0,
+        "center_y": 2625.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вышгород": {
+        "center_x": 3856.0,
+        "center_y": 2618.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "житомир": {
+        "center_x": 3765.5,
+        "center_y": 2493.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "коростень": {
+        "center_x": 3747.5,
+        "center_y": 2599.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мозырь": {
+        "center_x": 3697.5,
+        "center_y": 2727.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "жлобин": {
+        "center_x": 3815.0,
+        "center_y": 2775.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гомель": {
+        "center_x": 3961.0,
+        "center_y": 2756.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "брянск": {
+        "center_x": 4119.5,
+        "center_y": 2792.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "орёл": {
+        "center_x": 4311.5,
+        "center_y": 2811.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "липецк": {
+        "center_x": 4463.0,
+        "center_y": 2894.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "воронеж": {
+        "center_x": 4467.0,
+        "center_y": 2805.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "борисоглебск": {
+        "center_x": 4659.5,
+        "center_y": 2758.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тамбов": {
+        "center_x": 4611.0,
+        "center_y": 2891.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "балашов": {
+        "center_x": 4867.0,
+        "center_y": 2828.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "пенза": {
+        "center_x": 4766.5,
+        "center_y": 2946.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "арзамас": {
+        "center_x": 4771.0,
+        "center_y": 3149.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "горький": {
+        "center_x": 4825.0,
+        "center_y": 3297.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кострома": {
+        "center_x": 4772.5,
+        "center_y": 3464.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "иваново": {
+        "center_x": 4645.5,
+        "center_y": 3338.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "муром": {
+        "center_x": 4557.5,
+        "center_y": 3219.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "рязань": {
+        "center_x": 4485.0,
+        "center_y": 3052.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "владимир": {
+        "center_x": 4440.5,
+        "center_y": 3195.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ярославль": {
+        "center_x": 4445.0,
+        "center_y": 3350.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "данилов": {
+        "center_x": 4444.5,
+        "center_y": 3520.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рыбинск": {
+        "center_x": 4276.5,
+        "center_y": 3517.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "москва": {
+        "center_x": 4252.0,
+        "center_y": 3344.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "ногинск": {
+        "center_x": 4279.5,
+        "center_y": 3155.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "калуга": {
+        "center_x": 4155.5,
+        "center_y": 3017.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "тула": {
+        "center_x": 4315.0,
+        "center_y": 2975.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рославль": {
+        "center_x": 3979.5,
+        "center_y": 2981.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рогачёв": {
+        "center_x": 3953.0,
+        "center_y": 2874.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "могилёв": {
+        "center_x": 3792.5,
+        "center_y": 2914.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "бобруйск": {
+        "center_x": 3664.5,
+        "center_y": 2829.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "минск": {
+        "center_x": 3640.0,
+        "center_y": 2951.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "орша": {
+        "center_x": 3753.0,
+        "center_y": 3008.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "смоленск": {
+        "center_x": 3900.0,
+        "center_y": 3056.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "вязьма": {
+        "center_x": 4006.5,
+        "center_y": 3132.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "можайск": {
+        "center_x": 4152.5,
+        "center_y": 3184.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ржев": {
+        "center_x": 4072.5,
+        "center_y": 3301.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "калинин": {
+        "center_x": 4139.0,
+        "center_y": 3433.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "череповец": {
+        "center_x": 4147.5,
+        "center_y": 3594.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "демянск": {
+        "center_x": 3991.5,
+        "center_y": 3455.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "старая русса": {
+        "center_x": 3871.5,
+        "center_y": 3392.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "великие луки": {
+        "center_x": 3943.0,
+        "center_y": 3228.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "витебск": {
+        "center_x": 3738.5,
+        "center_y": 3130.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "невель": {
+        "center_x": 3776.5,
+        "center_y": 3267.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "опочка": {
+        "center_x": 3647.5,
+        "center_y": 3250.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "псков": {
+        "center_x": 3686.0,
+        "center_y": 3354.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ленинград": {
+        "center_x": 3631.0,
+        "center_y": 3521.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "новгород": {
+        "center_x": 3814.0,
+        "center_y": 3490.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "волхов": {
+        "center_x": 3813.5,
+        "center_y": 3632.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тихвин": {
+        "center_x": 3934.5,
+        "center_y": 3594.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вытегра": {
+        "center_x": 3990.5,
+        "center_y": 3703.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "сегежа": {
+        "center_x": 3914.5,
+        "center_y": 3905.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "петрозаводск": {
+        "center_x": 3755.5,
+        "center_y": 3820.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кемь": {
+        "center_x": 3707.5,
+        "center_y": 4054.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кандалакша": {
+        "center_x": 3618.5,
+        "center_y": 4210.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кола": {
+        "center_x": 3879.0,
+        "center_y": 4391.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мурманск": {
+        "center_x": 3636.0,
+        "center_y": 4442.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "печенга": {
+        "center_x": 3535.5,
+        "center_y": 4502.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кайяни": {
+        "center_x": 3491.5,
+        "center_y": 4167.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "йоэнсу": {
+        "center_x": 3594.5,
+        "center_y": 3931.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сортавала": {
+        "center_x": 3651.5,
+        "center_y": 3809.5,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "выборг": {
+        "center_x": 3568.0,
+        "center_y": 3666.0,
+        "color": [
+            134,
+            30,
+            30
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "хельсинки": {
+        "center_x": 3421.0,
+        "center_y": 3626.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "турку": {
+        "center_x": 3219.0,
+        "center_y": 3604.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "оланд": {
+        "center_x": 3057.5,
+        "center_y": 3572.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "пори": {
+        "center_x": 3161.5,
+        "center_y": 3753.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тампере": {
+        "center_x": 3319.5,
+        "center_y": 3746.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "миккели": {
+        "center_x": 3519.0,
+        "center_y": 3786.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ювяскуля": {
+        "center_x": 3435.5,
+        "center_y": 3880.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "куопио": {
+        "center_x": 3420.0,
+        "center_y": 3990.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сейнайоки": {
+        "center_x": 3280.5,
+        "center_y": 3886.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вааса": {
+        "center_x": 3183.0,
+        "center_y": 3912.0,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "оулу": {
+        "center_x": 3314.5,
+        "center_y": 4144.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рованиеми": {
+        "center_x": 3329.5,
+        "center_y": 4433.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "торнио": {
+        "center_x": 3266.5,
+        "center_y": 4314.5,
+        "color": [
+            152,
+            169,
+            169
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лулео": {
+        "center_x": 3132.5,
+        "center_y": 4259.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кируна": {
+        "center_x": 3038.5,
+        "center_y": 4436.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "елливаре": {
+        "center_x": 2884.0,
+        "center_y": 4240.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "умео": {
+        "center_x": 3028.0,
+        "center_y": 4094.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сундсвалль": {
+        "center_x": 2906.5,
+        "center_y": 3919.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "вильгельмина": {
+        "center_x": 2774.5,
+        "center_y": 4039.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эстерсунд": {
+        "center_x": 2670.0,
+        "center_y": 3872.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "свег": {
+        "center_x": 2587.5,
+        "center_y": 3709.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "фалун": {
+        "center_x": 2704.5,
+        "center_y": 3685.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "евле": {
+        "center_x": 2821.5,
+        "center_y": 3686.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "стокгольм": {
+        "center_x": 2890.0,
+        "center_y": 3500.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вестерос": {
+        "center_x": 2771.5,
+        "center_y": 3498.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "людвика": {
+        "center_x": 2634.0,
+        "center_y": 3588.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "карлстад": {
+        "center_x": 2642.5,
+        "center_y": 3446.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "норчёпинг": {
+        "center_x": 2761.0,
+        "center_y": 3339.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "готланд": {
+        "center_x": 2954.0,
+        "center_y": 3207.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эланд": {
+        "center_x": 2811.0,
+        "center_y": 3120.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "йёнчёпинг": {
+        "center_x": 2670.5,
+        "center_y": 3165.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мальмё": {
+        "center_x": 2578.5,
+        "center_y": 3012.0,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "гётеборг": {
+        "center_x": 2557.5,
+        "center_y": 3232.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "омоль": {
+        "center_x": 2493.0,
+        "center_y": 3441.5,
+        "color": [
+            89,
+            112,
+            156
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "осло": {
+        "center_x": 2436.0,
+        "center_y": 3492.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кристиансанн": {
+        "center_x": 2246.5,
+        "center_y": 3449.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ставангер": {
+        "center_x": 2137.0,
+        "center_y": 3451.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "берген": {
+        "center_x": 2186.0,
+        "center_y": 3631.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "хамар": {
+        "center_x": 2418.5,
+        "center_y": 3646.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "рёрос": {
+        "center_x": 2466.0,
+        "center_y": 3826.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "олесунн": {
+        "center_x": 2259.0,
+        "center_y": 3822.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тронхейм": {
+        "center_x": 2509.0,
+        "center_y": 3998.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "му-и-рана": {
+        "center_x": 2633.5,
+        "center_y": 4213.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "нарвик": {
+        "center_x": 2815.0,
+        "center_y": 4440.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "хаммерфест": {
+        "center_x": 3119.0,
+        "center_y": 4632.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вардё": {
+        "center_x": 3359.0,
+        "center_y": 4596.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ольборг": {
+        "center_x": 2261.0,
+        "center_y": 3226.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "орхус": {
+        "center_x": 2256.0,
+        "center_y": 3119.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "коллинг": {
+        "center_x": 2214.0,
+        "center_y": 3014.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "оденсе": {
+        "center_x": 2334.5,
+        "center_y": 3009.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "копенгаген": {
+        "center_x": 2435.5,
+        "center_y": 2976.0,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "борнхольм": {
+        "center_x": 2673.0,
+        "center_y": 2912.5,
+        "color": [
+            123,
+            131,
+            133
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дувр": {
+        "center_x": 1312.0,
+        "center_y": 2650.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "порсмут": {
+        "center_x": 1136.0,
+        "center_y": 2617.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "плимут": {
+        "center_x": 915.5,
+        "center_y": 2571.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "бристоль": {
+        "center_x": 1097.0,
+        "center_y": 2683.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "лондон": {
+        "center_x": 1226.0,
+        "center_y": 2719.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "норвич": {
+        "center_x": 1300.0,
+        "center_y": 2789.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бирмингем": {
+        "center_x": 1109.5,
+        "center_y": 2797.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "кардифф": {
+        "center_x": 965.5,
+        "center_y": 2801.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ливерпуль": {
+        "center_x": 1062.5,
+        "center_y": 2912.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "шеффилд": {
+        "center_x": 1184.5,
+        "center_y": 2923.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сандерленд": {
+        "center_x": 1088.5,
+        "center_y": 3065.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эдинбург": {
+        "center_x": 980.5,
+        "center_y": 3192.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "абердин": {
+        "center_x": 950.5,
+        "center_y": 3374.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "инвернесс": {
+        "center_x": 936.5,
+        "center_y": 3521.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сторноуэй": {
+        "center_x": 827.0,
+        "center_y": 3554.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "белфаст": {
+        "center_x": 710.5,
+        "center_y": 3112.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "портадаун": {
+        "center_x": 644.0,
+        "center_y": 3020.0,
+        "color": [
+            79,
+            146,
+            89
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дублин": {
+        "center_x": 728.0,
+        "center_y": 2903.0,
+        "color": [
+            79,
+            146,
+            89
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "голуэй": {
+        "center_x": 565.5,
+        "center_y": 2894.0,
+        "color": [
+            79,
+            146,
+            89
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "корк": {
+        "center_x": 590.0,
+        "center_y": 2780.0,
+        "color": [
+            79,
+            146,
+            89
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "стамбул": {
+        "center_x": 3817.0,
+        "center_y": 1375.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "бурса": {
+        "center_x": 3821.0,
+        "center_y": 1246.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кандыра": {
+        "center_x": 4027.5,
+        "center_y": 1331.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "карабюк": {
+        "center_x": 4194.0,
+        "center_y": 1469.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "синоп": {
+        "center_x": 4356.5,
+        "center_y": 1525.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "самсун": {
+        "center_x": 4500.0,
+        "center_y": 1492.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "орду": {
+        "center_x": 4619.5,
+        "center_y": 1487.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "трабзон": {
+        "center_x": 4725.5,
+        "center_y": 1539.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ардаган": {
+        "center_x": 4876.5,
+        "center_y": 1602.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "карс": {
+        "center_x": 5047.5,
+        "center_y": 1545.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "олту": {
+        "center_x": 4913.0,
+        "center_y": 1521.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "агры": {
+        "center_x": 5002.0,
+        "center_y": 1421.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эрзурум": {
+        "center_x": 4832.0,
+        "center_y": 1419.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эрзинджан": {
+        "center_x": 4705.0,
+        "center_y": 1408.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сивас": {
+        "center_x": 4546.5,
+        "center_y": 1377.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "чанкыры": {
+        "center_x": 4326.0,
+        "center_y": 1404.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "анкара": {
+        "center_x": 4374.0,
+        "center_y": 1313.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эскишехир": {
+        "center_x": 4186.0,
+        "center_y": 1276.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "ушак": {
+        "center_x": 3991.5,
+        "center_y": 1186.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "измир": {
+        "center_x": 3874.0,
+        "center_y": 1104.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "денизли": {
+        "center_x": 3978.0,
+        "center_y": 1015.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "родос": {
+        "center_x": 3931.0,
+        "center_y": 883.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "анталья": {
+        "center_x": 4085.0,
+        "center_y": 1088.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "конья": {
+        "center_x": 4299.5,
+        "center_y": 1179.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мерсин": {
+        "center_x": 4324.5,
+        "center_y": 1057.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "кайсери": {
+        "center_x": 4545.0,
+        "center_y": 1224.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "газиантеп": {
+        "center_x": 4599.5,
+        "center_y": 1114.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "элязиз": {
+        "center_x": 4767.5,
+        "center_y": 1272.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "битлис": {
+        "center_x": 4950.5,
+        "center_y": 1321.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ахлат": {
+        "center_x": 5048.5,
+        "center_y": 1339.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ван": {
+        "center_x": 5069.0,
+        "center_y": 1208.0,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "мардин": {
+        "center_x": 4884.5,
+        "center_y": 1187.5,
+        "color": [
+            139,
+            145,
+            130
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дейр-эс-зор": {
+        "center_x": 4921.5,
+        "center_y": 932.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "алеппо": {
+        "center_x": 4666.5,
+        "center_y": 993.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "хомс": {
+        "center_x": 4781.5,
+        "center_y": 902.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бейрут": {
+        "center_x": 4612.5,
+        "center_y": 680.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дамаск": {
+        "center_x": 4787.5,
+        "center_y": 653.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "мосул": {
+        "center_x": 5076.0,
+        "center_y": 867.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "кербела": {
+        "center_x": 4982.5,
+        "center_y": 541.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ар-рувайшид": {
+        "center_x": 4769.0,
+        "center_y": 482.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "амман": {
+        "center_x": 4616.0,
+        "center_y": 443.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "байир": {
+        "center_x": 4728.0,
+        "center_y": 300.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "акаба": {
+        "center_x": 4533.5,
+        "center_y": 281.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "иерусалим": {
+        "center_x": 4502.5,
+        "center_y": 470.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "газа": {
+        "center_x": 4391.0,
+        "center_y": 308.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "синай": {
+        "center_x": 4322.0,
+        "center_y": 163.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "суэц": {
+        "center_x": 4294.5,
+        "center_y": 266.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "каир": {
+        "center_x": 4082.0,
+        "center_y": 263.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "аз-сувайз": {
+        "center_x": 4099.5,
+        "center_y": 151.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "файюм": {
+        "center_x": 3942.0,
+        "center_y": 160.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "александрия": {
+        "center_x": 3987.5,
+        "center_y": 316.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "каттара": {
+        "center_x": 3801.5,
+        "center_y": 168.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эль-аламейн": {
+        "center_x": 3860.0,
+        "center_y": 318.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "гараула": {
+        "center_x": 3793.0,
+        "center_y": 257.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сива": {
+        "center_x": 3661.5,
+        "center_y": 177.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "нибейва": {
+        "center_x": 3674.0,
+        "center_y": 258.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мерса-матрух": {
+        "center_x": 3714.5,
+        "center_y": 334.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "саллум": {
+        "center_x": 3569.5,
+        "center_y": 341.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "рабиа": {
+        "center_x": 3559.0,
+        "center_y": 263.5,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "кипр": {
+        "center_x": 4394.5,
+        "center_y": 907.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мальта": {
+        "center_x": 2525.5,
+        "center_y": 593.0,
+        "color": [
+            152,
+            59,
+            46
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "форт капуццо": {
+        "center_x": 3402.5,
+        "center_y": 310.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бардия": {
+        "center_x": 3446.5,
+        "center_y": 378.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "тобрук": {
+        "center_x": 3347.5,
+        "center_y": 400.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "дерна": {
+        "center_x": 3221.5,
+        "center_y": 458.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "барка": {
+        "center_x": 3080.0,
+        "center_y": 456.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "эль-мекили": {
+        "center_x": 3230.0,
+        "center_y": 361.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "форт маддалена": {
+        "center_x": 3355.5,
+        "center_y": 250.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "джагбуб": {
+        "center_x": 3311.5,
+        "center_y": 138.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мсус": {
+        "center_x": 3154.5,
+        "center_y": 323.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бенгази": {
+        "center_x": 3051.0,
+        "center_y": 360.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "аджедабия": {
+        "center_x": 2949.0,
+        "center_y": 236.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ауджила": {
+        "center_x": 2943.0,
+        "center_y": 135.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сокна": {
+        "center_x": 2534.5,
+        "center_y": 206.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сирт": {
+        "center_x": 2679.5,
+        "center_y": 286.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "хомс 2": {
+        "center_x": 2508.0,
+        "center_y": 387.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "гадамес": {
+        "center_x": 2220.5,
+        "center_y": 297.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "триполи": {
+        "center_x": 2389.5,
+        "center_y": 441.5,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "зуара": {
+        "center_x": 2228.5,
+        "center_y": 469.0,
+        "color": [
+            59,
+            115,
+            57
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "габес": {
+        "center_x": 2085.5,
+        "center_y": 539.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сус": {
+        "center_x": 2120.0,
+        "center_y": 699.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "тунис": {
+        "center_x": 2132.5,
+        "center_y": 843.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "табарка": {
+        "center_x": 2042.5,
+        "center_y": 888.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "кассерин": {
+        "center_x": 2019.5,
+        "center_y": 766.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "бон": {
+        "center_x": 1868.5,
+        "center_y": 848.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Уголь",
+        "level": 1
+    },
+    "константина": {
+        "center_x": 1837.0,
+        "center_y": 717.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Нефть",
+        "level": 1
+    },
+    "филиппвиль": {
+        "center_x": 1702.0,
+        "center_y": 845.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сетиф": {
+        "center_x": 1665.0,
+        "center_y": 718.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Металл",
+        "level": 1
+    },
+    "бужи": {
+        "center_x": 1563.5,
+        "center_y": 852.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "блида": {
+        "center_x": 1477.5,
+        "center_y": 696.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "алжир": {
+        "center_x": 1327.0,
+        "center_y": 822.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "маскара": {
+        "center_x": 1307.0,
+        "center_y": 656.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сиди-бель-аббес": {
+        "center_x": 1131.5,
+        "center_y": 625.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "тлемсен": {
+        "center_x": 931.0,
+        "center_y": 589.5,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мостаганем": {
+        "center_x": 1081.5,
+        "center_y": 779.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "Дерево",
+        "level": 1
+    },
+    "оран": {
+        "center_x": 905.5,
+        "center_y": 741.0,
+        "color": [
+            28,
+            72,
+            210
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "вилья-санхурхо": {
+        "center_x": 696.5,
+        "center_y": 649.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "сеута": {
+        "center_x": 475.5,
+        "center_y": 730.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "марракеш": {
+        "center_x": 506.5,
+        "center_y": 544.5,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "Пшеница",
+        "level": 1
+    },
+    "бу-арфа": {
+        "center_x": 681.0,
+        "center_y": 477.5,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "уэззан": {
+        "center_x": 428.0,
+        "center_y": 273.0,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ифни": {
+        "center_x": 261.5,
+        "center_y": 266.0,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "могадор": {
+        "center_x": 313.0,
+        "center_y": 437.5,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "касабланка": {
+        "center_x": 354.5,
+        "center_y": 563.5,
+        "color": [
+            89,
+            105,
+            154
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "ибица": {
+        "center_x": 1250.5,
+        "center_y": 1041.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "мальорка": {
+        "center_x": 1402.5,
+        "center_y": 1124.5,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    },
+    "менорка": {
+        "center_x": 1533.0,
+        "center_y": 1146.0,
+        "color": [
+            170,
+            165,
+            75
+        ],
+        "resource": "-",
+        "level": 1
+    }
+}
