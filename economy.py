@@ -1,6 +1,17 @@
 from enum import Enum
 from typing import List, Dict
 
+# === КОНСТАНТЫ ТЕХНОЛОГИЙ ===
+TECH_BASE_COSTS = {
+    "economy": {"wheat": 10, "wood": 5},
+    "army": {"metal": 12, "coal": 6},
+    "logistics": {"wood": 10, "oil": 6}
+}
+TECH_BASE_TURNS = 4
+TECH_TURNS_REDUCTION_PER_PACK = 1  # 1 доп. пакет ресурсов = -1 ход
+TECH_MAX_LEVEL = 8
+# ============================
+
 class ResourceType(Enum):
     """Типы ресурсов"""
     WHEAT = "Пшеница"
@@ -50,6 +61,12 @@ class Economy:
         # Армии
         self.army_count = 0
 
+        self.wheat_progress = 0.0
+        self.metal_progress = 0.0
+        self.wood_progress = 0.0
+        self.coal_progress = 0.0
+        self.oil_progress = 0.0
+
     def get_resource_income(self, resource_type: ResourceType) -> int:
         """Рассчитать доход ресурса с учётом инвестиций"""
         # Маппинг русских названий на английские атрибуты
@@ -75,52 +92,63 @@ class Economy:
         return province_level_sum * 2
 
     def add_resources_from_provinces(self, provinces_data: List[Dict]) -> None:
-        """Начислить ресурсы от провинций (вызывать каждый ход)"""
-        # Сбрасываем базовый доход
-        self.wheat_income = 0
-        self.metal_income = 0
-        self.wood_income = 0
-        self.coal_income = 0
-        self.oil_income = 0
-
-        province_level_sum = 0
-
-        for prov in provinces_data:
-            level = prov.get('level', 1)
-            resource = prov.get('resource', '-')
-
-            province_level_sum += level
-
-            if resource == "Пшеница":
-                self.wheat_income += level
-            elif resource == "Металл":
-                self.metal_income += level
-            elif resource == "Дерево":
-                self.wood_income += level
-            elif resource == "Уголь":
-                self.coal_income += level
-            elif resource == "Нефть":
-                self.oil_income += level
-
-        # Начисляем золото
-        gold_income = self.calculate_gold_income(province_level_sum)
-        self.gold += gold_income
-
-        # Начисляем ресурсы с учётом инвестиций
-        resource_mapping = {
-            ResourceType.WHEAT: 'wheat',
-            ResourceType.METAL: 'metal',
-            ResourceType.WOOD: 'wood',
-            ResourceType.COAL: 'coal',
-            ResourceType.OIL: 'oil'
+        """
+        Расчет добычи ресурсов с накоплением (таймерами).
+        1 ур = 1 ед. за 3 хода (0.33/ход)
+        2 ур = 1 ед. за 2 хода (0.5/ход)
+        3 ур = 1 ед. за 1 ход (1.0/ход)
+        4 ур = 2 ед. за 1 ход (2.0/ход)
+        """
+        # Маппинг ресурсов (с запасом на пробелы из JSON)
+        res_map = {
+            "Пшеница": 'wheat', "Пшеница ": 'wheat',
+            "Металл": 'metal', "Металл ": 'metal',
+            "Дерево": 'wood', "Дерево ": 'wood',
+            "Уголь": 'coal', "Уголь ": 'coal',
+            "Нефть": 'oil', "Нефть ": 'oil'
         }
 
-        for res_type in ResourceType:
-            income = self.get_resource_income(res_type)
-            resource_name = resource_mapping.get(res_type)
-            if resource_name:
-                current = getattr(self, resource_name, 0)
-                setattr(self, resource_name, current + income)
+        # 1. Группируем провинции по ресурсам и уровням: {'wheat': {1: 5, 2: 3}, ...}
+        dist = {}
+        for prov in provinces_data:
+            res_raw = prov.get('resource', '-')
+            level = prov.get('level', 1)
+            res_key = res_map.get(res_raw)  # Ищем в маппинге
+
+            if res_key:
+                if res_key not in dist:
+                    dist[res_key] = {}
+                dist[res_key][level] = dist[res_key].get(level, 0) + 1
+
+        # 2. Рассчитываем добычу и обновляем прогресс
+        production_rates = {
+            1: 0.3333,  # 1 ед за 3 хода
+            2: 0.5,  # 1 ед за 2 хода
+            3: 1.0,  # 1 ед за 1 ход
+            4: 2.0  # 2 ед за 1 ход (и выше)
+        }
+
+        for res_key, levels in dist.items():
+            prod_per_turn = 0.0
+            for lvl, count in levels.items():
+                rate = production_rates.get(lvl, 2.0)
+                prod_per_turn += (rate * count)
+
+            # Добавляем к текущему прогрессу
+            current_progress = getattr(self, f"{res_key}_progress", 0.0)
+            new_progress = current_progress + prod_per_turn
+
+            # Если накопили целое число ресурсов — выдаем их
+            amount_produced = int(new_progress)
+            if amount_produced > 0:
+                setattr(self, res_key, getattr(self, res_key, 0) + amount_produced)
+                setattr(self, f"{res_key}_progress", new_progress - amount_produced)  # Оставляем остаток
+            else:
+                setattr(self, f"{res_key}_progress", new_progress)
+
+        # Начисляем золото (как раньше)
+        province_level_sum = sum(prov.get('level', 1) for prov in provinces_data)
+        self.gold += self.calculate_gold_income(province_level_sum)
 
     def can_buy_army(self, count: int = 1) -> bool:
         return self.gold >= (count * self.ARMY_COST)
@@ -190,6 +218,29 @@ class Economy:
             return True
         return False
 
+    def can_pay_tech(self, branch: str, next_level: int, packs: int = 1) -> bool:
+        """Проверка, хватает ли ресурсов на пакет исследования"""
+        if branch not in TECH_BASE_COSTS:
+            return False
+        base = TECH_BASE_COSTS[branch]
+        # Стоимость растёт линейно с уровнем
+        multiplier = next_level
+        for res, amount in base.items():
+            needed = amount * multiplier * packs
+            if getattr(self, res, 0) < needed:
+                return False
+        return True
+
+    def pay_tech(self, branch: str, next_level: int, packs: int = 1) -> bool:
+        """Списание ресурсов за исследование"""
+        if not self.can_pay_tech(branch, next_level, packs):
+            return False
+        base = TECH_BASE_COSTS[branch]
+        multiplier = next_level
+        for res, amount in base.items():
+            setattr(self, res, getattr(self, res, 0) - (amount * multiplier * packs))
+        return True
+
     def get_investment_bonus_text(self, resource_type: ResourceType) -> str:
         # Маппинг русских названий на английские атрибуты
         resource_mapping = {
@@ -228,7 +279,12 @@ class Economy:
             'wood_invest': self.wood_invest,
             'coal_invest': self.coal_invest,
             'oil_invest': self.oil_invest,
-            'army_count': self.army_count
+            'army_count': self.army_count,
+            'wheat_progress': self.wheat_progress,
+            'metal_progress': self.metal_progress,
+            'wood_progress': self.wood_progress,
+            'coal_progress': self.coal_progress,
+            'oil_progress': self.oil_progress
         }
 
     @classmethod

@@ -1,4 +1,4 @@
-from economy import Economy, ResourceType
+from economy import *
 from typing import List, Optional
 
 class Country:
@@ -11,6 +11,12 @@ class Country:
         self.resources_list = resources_list
         self.provinces = provinces if provinces else []
         self.capital = capital
+        # === СОСТОЯНИЕ ТЕХНОЛОГИЙ ===
+        self.tech_state = {
+            "economy": {"level": 0, "researching": False, "turns_left": 0, "target_level": 0},
+            "army": {"level": 0, "researching": False, "turns_left": 0, "target_level": 0},
+            "logistics": {"level": 0, "researching": False, "turns_left": 0, "target_level": 0}
+        }
         # === НОВАЯ ЭКОНОМИКА ===
         self.economy = Economy(country_name=name, starting_gold=gold)
 
@@ -123,13 +129,9 @@ class Country:
 
     # === Сериализация ===
     def to_dict(self) -> dict:
-        return {
-            'country': self.country,
-            'color': self.color,
-            'capital': self.capital,
-            'provinces': self.provinces,
-            'economy': self.economy.to_dict()
-        }
+        data = {'country': self.country, 'color': self.color, 'capital': self.capital, 'provinces': self.provinces,
+                'economy': self.economy.to_dict(), 'tech_state': self.tech_state}
+        return data
 
     @classmethod
     def from_dict(cls, data: dict) -> 'Country':
@@ -148,4 +150,47 @@ class Country:
             gold=economy_data.get('gold', 100)
         )
         country.economy = Economy.from_dict(economy_data)
+        country.tech_state = data.get('tech_state', country.tech_state)  # <- добавь эту строку
         return country
+
+    # === ТЕХНОЛОГИИ ===
+    def get_tech_bonus(self, branch: str) -> float:
+        """Возвращает множитель бонуса (0.0 = нет, 0.16 = макс)"""
+        lvl = self.tech_state.get(branch, {}).get("level", 0)
+        bonuses = {"economy": 0.02, "army": 0.03, "logistics": 0.04}
+        return min(lvl * bonuses.get(branch, 0), 0.30)
+
+    def start_research(self, branch: str, packs: int = 1) -> bool:
+        state = self.tech_state.get(branch)
+        if not state or state["researching"] or state["level"] >= TECH_MAX_LEVEL:
+            return False
+        if not self.economy.can_pay_tech(branch, state["level"] + 1, packs):
+            return False
+
+        self.economy.pay_tech(branch, state["level"] + 1, packs)
+        state["target_level"] = state["level"] + 1
+        state["researching"] = True
+        # Базовое время минус ускорение пакетами, минимум 1 ход
+        state["turns_left"] = max(1, TECH_BASE_TURNS - (packs - 1) * TECH_TURNS_REDUCTION_PER_PACK)
+        return True
+
+    def invest_in_research(self, branch: str, packs: int = 1) -> bool:
+        state = self.tech_state.get(branch)
+        if not state or not state["researching"]:
+            return False
+        if not self.economy.can_pay_tech(branch, state["target_level"], packs):
+            return False
+        self.economy.pay_tech(branch, state["target_level"], packs)
+        state["turns_left"] = max(1, state["turns_left"] - packs * TECH_TURNS_REDUCTION_PER_PACK)
+        return True
+
+    def update_research_turns(self) -> None:
+        """Вызывать в конце хода. Завершает исследования и применяет уровни."""
+        for branch, state in self.tech_state.items():
+            if state["researching"]:
+                state["turns_left"] -= 1
+                if state["turns_left"] <= 0:
+                    state["level"] = state["target_level"]
+                    state["researching"] = False
+                    state["turns_left"] = 0
+

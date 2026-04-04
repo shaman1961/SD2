@@ -36,6 +36,7 @@ def save_game(game):
         "army_positions": army_positions_str,
         "province_owners": province_owners,
         "province_levels": province_levels,
+        "tech_state": game.player_country.tech_state if hasattr(game.player_country, 'tech_state') else None,
         "player_economy": economy_data,
         "saved_at": datetime.now().isoformat()
     }
@@ -103,5 +104,8 @@ def apply_save_to_game(game, save_data):
         game.player_country.economy = Economy.from_dict(save_data["player_economy"])
         print(f"✅ Экономика загружена: {game.player_country.get_gold()} золота")
     # =====================
+
+    if save_data.get("tech_state") and hasattr(game.player_country, 'tech_state'):
+        game.player_country.tech_state = save_data["tech_state"]
 
     print(f"✅ Сохранение загружено (ход {game.turn})")
