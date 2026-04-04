@@ -3,7 +3,6 @@ from arcade.gui import (
     UIManager,
     UILabel,
     UIBoxLayout,
-    UIMessageBox,
     UIFlatButton,
     UIAnchorLayout
 )
@@ -12,11 +11,10 @@ from arcade.particles import FadeParticle, Emitter, EmitBurst
 import json
 from collections import Counter
 import random
-import time
 import province
 import menu
 import stats_manager
-from economy import Economy, ResourceType
+from economy import *
 from country import Country
 
 
@@ -71,6 +69,8 @@ class Game(arcade.View):
         self.province_panel_opened = False
         self.country_panel_opened = False
         self.economics_panel_opened = False
+        self.tech_panel_opened = False
+        self.tech_panel_ui = None
 
         self.province_panel = None
         self.country_panel = None
@@ -323,7 +323,7 @@ class Game(arcade.View):
         self.manager.add(self.economics_button_container)
 
         self.tech_button = UIFlatButton(text="Технологии", width=130, height=50)
-        self.tech_button.on_click = lambda e: self.new_turn()
+        self.tech_button.on_click = lambda e: self.open_tech_panel()
 
         self.tech_button_container = UIAnchorLayout()
         self.tech_button_container.add(
@@ -528,10 +528,16 @@ class Game(arcade.View):
         with open(f"countries{self.year}.json", mode="r", encoding="UTF-8") as file:
             data = json.load(file)
             provinces = data[self.country]["provinces"]
-            resources = dict(Counter(data[self.country]["resources"]))
 
-        if "-" in resources:
-            del resources["-"]
+        # Берём ресурсы из живой экономики, а не из JSON
+        resources = {
+            "Пшеница": self.player_country.economy.wheat,
+            "Металл": self.player_country.economy.metal,
+            "Дерево": self.player_country.economy.wood,
+            "Уголь": self.player_country.economy.coal,
+            "Нефть": self.player_country.economy.oil
+        }
+        resources = {k: v for k, v in resources.items() if v > 0}  # Убираем нули
 
         # Адаптивные размеры
         panel_w = 1200
@@ -583,6 +589,100 @@ class Game(arcade.View):
         anchor.add(content_panel, anchor_x="center", anchor_y="center")
         self.country_panel = anchor
         self.manager.add(anchor)
+
+    def open_tech_panel(self):
+        if self.turn_blocked or self.tech_panel_opened:
+            return
+        self.tech_panel_opened = True
+        self.manager.remove(self.country_button_container)
+        self.manager.remove(self.economics_button_container)
+        self.manager.remove(self.tech_button_container)
+
+        W, H = self.window.width, self.window.height
+        margin = 60
+        panel_w, panel_h = W - margin * 2, H - margin * 2
+
+        main = UIBoxLayout(vertical=True, space_between=12)
+        main.with_padding(top=20, bottom=20, left=20, right=20)  # ✅ ИСПРАВЛЕНО
+        main.with_background(color=(20, 22, 26, 245))
+        main.size_hint = (None, None)
+        main.width, main.height = panel_w, panel_h
+
+        title = UILabel(text="🔬 ТЕХНОЛОГИИ", font_size=28, align="center", width=panel_w - 40)
+        main.add(title)
+        main.add(UILabel("─" * 90, align="center", width=panel_w - 40))
+
+        branches_box = UIBoxLayout(vertical=False, space_between=40)
+        branches_box.with_padding(top=10, bottom=20)
+
+        BRANCHES = [
+            ("economy", "🏭 ЭКОНОМИКА", "Доход золота +2% за уровень"),
+            ("army", "⚔️ АРМИЯ", "Найм войск дешевле -3% за уровень"),
+            ("logistics", "🚚 ЛОГИСТИКА", "Перемещение дешевле -4% за уровень")
+        ]
+
+        for branch, name, desc in BRANCHES:
+            col = UIBoxLayout(vertical=True, space_between=6)
+            col.with_padding(left=10, right=10)
+            col.add(UILabel(text=name, font_size=18, bold=True, align="left", width=300))
+            col.add(UILabel(text=desc, font_size=12, align="left", width=300))
+            col.add(UILabel("─" * 40, align="center", width=300))
+
+            state = self.player_country.tech_state[branch]
+            for lvl in range(1, 9):
+                is_done = state["level"] >= lvl
+                is_active = state["researching"] and state["target_level"] == lvl
+                is_current = state["level"] == lvl - 1 and not state["researching"]
+
+                if is_done:
+                    status, btn_text, btn_en = "✅ Изучено", "ГОТОВО", False
+                elif is_active:
+                    status, btn_text, btn_en = f"⏳ Идёт ({state['turns_left']} ходов)", "Ускорить (+1 пак)", True
+                elif is_current:
+                    can_pay = self.player_country.economy.can_pay_tech(branch, lvl, 1)
+                    status, btn_text, btn_en = "🟡 Доступно", "Начать (1 пак)", can_pay
+                else:
+                    status, btn_text, btn_en = "🔒 Заблокировано", "...", False
+
+                row = UIBoxLayout(vertical=False, space_between=8)
+                row.add(UILabel(text=f"Ур.{lvl}", width=40, font_size=13))
+                row.add(UILabel(text=status, width=180, font_size=12))
+
+                btn = UIFlatButton(text=btn_text, width=140, height=28, font_size=11)
+                btn.on_click = lambda e, b=branch, l=lvl, act=is_active: self._handle_tech_click(b, l, act)
+                btn.enabled = btn_en
+                row.add(btn)
+                col.add(row)
+            branches_box.add(col)
+
+        main.add(branches_box)
+        main.add(UILabel("─" * 90, align="center", width=panel_w - 40))
+
+        close_btn = UIFlatButton(text="ЗАКРЫТЬ", width=220, height=42, font_size=16)
+        close_btn.on_click = lambda e: self.close_top_message(self.tech_panel_ui, "tech_panel_opened")
+        main.add(close_btn)
+
+        anchor = UIAnchorLayout()
+        anchor.add(main, anchor_x="center", anchor_y="center")
+        self.tech_panel_ui = anchor
+        self.manager.add(anchor)
+
+    def _handle_tech_click(self, branch, target_lvl, is_investing):
+        if is_investing:
+            if self.player_country.invest_in_research(branch, packs=1):
+                self._show_message("📦 Ресурсы вложены! Ходов до завершения меньше.", (100, 255, 100))
+                self._refresh_tech_panel()
+        else:
+            if self.player_country.start_research(branch, packs=1):
+                self._show_message("🔬 Исследование запущено!", (100, 200, 255))
+                self._refresh_tech_panel()
+            else:
+                self._show_message("❌ Недостаточно ресурсов или ветка занята.", (255, 80, 80))
+
+    def _refresh_tech_panel(self):
+        if self.tech_panel_opened:
+            self.manager.remove(self.tech_panel_ui)
+            self.open_tech_panel()
 
     def economic_panel(self):
         if self.turn_blocked:
@@ -731,7 +831,7 @@ class Game(arcade.View):
             if result.get('success'):
                 for prov in self.all_provinces:
                     if prov.name == self.prov_name:
-                        if prov.level < 5:
+                        if prov.level < 4:
                             prov.level += 1
                             break
                 self._update_province_panel()
@@ -810,6 +910,11 @@ class Game(arcade.View):
             self.turn_active = True
             self.turn_timer = self.turn_time_limit
 
+        # Обновляем прогресс технологий
+        self.player_country.update_research_turns()
+        if self.tech_panel_opened:
+            self._refresh_tech_panel()
+
         self._show_turn_overlay()
 
     def buy_army(self):
@@ -830,16 +935,17 @@ class Game(arcade.View):
             return
 
         if self.prov_center not in self.army_positions:
-            if self.player_country.can_buy_army():
-                if self.player_country.buy_army():
-                    stats_manager.increment_reinforcements(1)
-                    self.army_positions[self.prov_center] = 0
-                    self._update_economic_panel()
-                    self._show_message(f"Армия нанята! (-{Economy.ARMY_COST} золота)", (0, 255, 0))
-                else:
-                    self._show_message("Недостаточно золота!", (255, 0, 0))
+            tech_discount = self.player_country.get_tech_bonus("army")
+            cost = max(10, int(Economy.ARMY_COST * (1 - tech_discount)))
+            if self.player_country.economy.gold >= cost:
+                self.player_country.economy.gold -= cost
+                self.player_country.economy.army_count += 1
+                stats_manager.increment_reinforcements(1)
+                self.army_positions[self.prov_center] = 0
+                self._update_economic_panel()
+                self._show_message(f"Армия нанята! (-{cost} золота)", (0, 255, 0))
             else:
-                self._show_message(f"Нужно {Economy.ARMY_COST} золота", (255, 200, 0))
+                self._show_message(f"Нужно {cost} золота", (255, 200, 0))
 
     def _run_bot_turns(self):
         if self.is_multiplayer:
@@ -923,55 +1029,58 @@ class Game(arcade.View):
         if self.turn_blocked:
             return
 
-        if self.prov_center not in self.army_positions:
-            if self.player_country.can_buy_army():
-                if (self.last_prov_centre and
-                        self.last_prov_centre in self.army_positions and
-                        self.army_positions[self.last_prov_centre] == 0):
-                    from neighbors import province_neighbors
-                    if self.prov_name in province_neighbors.get(self.last_prov_name, []):
+        # 1. Целевая провинция должна быть свободна
+        if self.prov_center in self.army_positions:
+            self._show_message("В провинции уже стоит армия! ", (255, 100, 0))
+            self.moving = False
+            return
 
-                        if self.player_country.economy.spend_gold(Economy.ARMY_COST):
-                            self._update_economic_panel()
+        # 2. Проверяем, есть ли армия, которая ещё не ходила
+        if (not self.last_prov_centre or
+                self.last_prov_centre not in self.army_positions or
+                self.army_positions[self.last_prov_centre] != 0):
+            self._show_message("Эта армия уже ходила! ", (255, 0, 0))
+            self.moving = False
+            return
 
-                            self.army_positions[self.prov_center] = self.country
-                            while self.last_prov_centre in self.army_positions:
-                                del self.army_positions[self.last_prov_centre]
+        # 3. Проверяем соседство
+        from neighbors import province_neighbors
+        if self.prov_name not in province_neighbors.get(self.last_prov_name, []):
+            self._show_message("Провинции не соседние! ", (255, 0, 0))
+            self.moving = False
+            return
 
-                            conquered = False
-                            for prov in self.all_provinces:
-                                if prov.name == self.prov_name:
-                                    if (prov.color.r != self.player_country.color[0] or
-                                            prov.color.g != self.player_country.color[1] or
-                                            prov.color.b != self.player_country.color[2]):
-                                        prov.color = tuple(self.player_country.color)
-                                        self.create_conquest_particles(
-                                            prov.center_x, prov.center_y, self.player_country.color
-                                        )
-                                        stats_manager.increment_conquered(1)
-                                        conquered = True
-                                    break
+        # 4. Рассчитываем стоимость и проверяем золото
+        tech_discount = self.player_country.get_tech_bonus("logistics")
+        move_cost = max(5, int(Economy.ARMY_COST * (1 - tech_discount)))
 
-                            if conquered:
-                                self._show_message("Провинция захвачена!", (0, 255, 0))
-                            else:
-                                self._show_message("Армия перемещена!", (0, 255, 255))
-                        else:
-                            self._show_message("Недостаточно золота!", (255, 0, 0))
-                            self.moving = False
-                            return
-                    else:
-                        self._show_message("Провинции не соседние!", (255, 0, 0))
-                        self.moving = False
-                        return
-                else:
-                    self._show_message("Эта армия уже ходила!", (255, 0, 0))
-                    self.moving = False
-                    return
-            else:
-                self._show_message(f"Нужно {Economy.ARMY_COST} золота!", (255, 0, 0))
-                self.moving = False
-                return
+        if not self.player_country.economy.spend_gold(move_cost):
+            self._show_message(f"Нужно {move_cost} золота! ", (255, 0, 0))
+            self.moving = False
+            return
+
+        # 5. Всё успешно: списываем, перемещаем, обновляем карту
+        self._update_economic_panel()
+        self.army_positions[self.prov_center] = self.country
+        if self.last_prov_centre in self.army_positions:
+            del self.army_positions[self.last_prov_centre]
+
+        conquered = False
+        for prov in self.all_provinces:
+            if prov.name == self.prov_name:
+                if (prov.color.r != self.player_country.color[0] or
+                        prov.color.g != self.player_country.color[1] or
+                        prov.color.b != self.player_country.color[2]):
+                    prov.color = tuple(self.player_country.color)
+                    self.create_conquest_particles(prov.center_x, prov.center_y, self.player_country.color)
+                    stats_manager.increment_conquered(1)
+                    conquered = True
+                break
+
+        if conquered:
+            self._show_message("Провинция захвачена! ", (0, 255, 0))
+        else:
+            self._show_message("Армия перемещена! ", (0, 255, 255))
 
         self.moving = False
 
@@ -998,6 +1107,8 @@ class Game(arcade.View):
             self.country_panel_opened = False
         elif panel_flag_name == "economics_panel_opened":
             self.economics_panel_opened = False
+        elif panel_flag_name == "tech_panel_opened":
+            self.tech_panel_opened = False
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
         if self.turn_blocked:
@@ -1170,16 +1281,6 @@ class Game(arcade.View):
                 font_name=("Courier New",),
                 bold=True
             )
-
-    def _invest_resource(self, resource_name: str):
-        if self.turn_blocked:
-            return
-
-        if self.player_country.invest(resource_name):
-            self._update_economic_panel()
-            self._show_message(f"Инвестиция в {resource_name}! (-{Economy.INVESTMENT_COST} золота)", (0, 255, 255))
-        else:
-            self._show_message("Недостаточно золота или макс. уровень", (255, 100, 100))
 
     def _update_economic_panel(self):
         if self.economics_panel_opened:
