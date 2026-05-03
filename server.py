@@ -111,13 +111,11 @@ def handle_buy_army(game, pid, position):
     if state['province_owners'].get(position) != game['countries'].get(pid):
         return {'success': False, 'error': 'Провинция не ваша'}
 
-    # Получаем текущую информацию об армии
     owner, count = get_army_info(state['armies'], position)
 
     if owner is not None and owner != pid:
         return {'success': False, 'error': 'В провинции чужая армия'}
 
-    # Увеличиваем количество дивизий
     set_army_info(state['armies'], position, pid, count + 1)
 
     econ['gold'] -= ARMY_COST
@@ -132,52 +130,44 @@ def handle_move_army(game, pid, from_pos, to_pos):
     if econ.get('gold', 0) < MOVE_COST:
         return {'success': False, 'error': 'Недостаточно золота'}
 
-    # Проверяем исходную армию
     from_owner, from_count = get_army_info(state['armies'], from_pos)
     if from_owner != pid or from_count == 0:
         return {'success': False, 'error': 'Нет вашей армии в исходной провинции'}
 
-    # Проверяем целевую армию
     to_owner, to_count = get_army_info(state['armies'], to_pos)
 
     player_country = game['countries'].get(pid)
     econ['gold'] -= MOVE_COST
 
-    # Если целевая провинция наша
     if to_owner == pid:
         set_army_info(state['armies'], to_pos, pid, to_count + from_count)
         if from_pos in state['armies']:
             del state['armies'][from_pos]
         return {'success': True, 'conquered': False}
 
-    # Если целевая провинция пустая
     if to_owner is None:
         set_army_info(state['armies'], to_pos, pid, from_count)
         if from_pos in state['armies']:
             del state['armies'][from_pos]
-        # Проверяем захват
+
         if state['province_owners'].get(to_pos) != player_country:
             state['province_owners'][to_pos] = player_country
             return {'success': True, 'conquered': True}
         return {'success': True, 'conquered': False}
 
-    # Сражение с чужой армией
     if from_count > to_count:
-        # Победа
-        losses = max(0, int(to_count * 0.7))  # Базовые потери 70% от врага
+        losses = max(0, int(to_count * 0.7))
         survivors = max(1, from_count - losses)
         set_army_info(state['armies'], to_pos, pid, survivors)
         if from_pos in state['armies']:
             del state['armies'][from_pos]
 
-        # Захват провинции
         conquered = state['province_owners'].get(to_pos) != player_country
         if conquered:
             state['province_owners'][to_pos] = player_country
         return {'success': True, 'conquered': conquered}
 
     elif from_count == to_count:
-        # Ничья — обе армии уничтожены
         if from_pos in state['armies']:
             del state['armies'][from_pos]
         if to_pos in state['armies']:
@@ -185,7 +175,6 @@ def handle_move_army(game, pid, from_pos, to_pos):
         return {'success': True, 'conquered': False}
 
     else:
-        # Поражение — атакующий уничтожен
         if from_pos in state['armies']:
             del state['armies'][from_pos]
         return {'success': True, 'conquered': False}
@@ -301,7 +290,6 @@ def add_bots(gid):
             occupied.append(country)
 
 
-# API
 @app.route('/api/health')
 def health(): return jsonify({"status": "ok"})
 

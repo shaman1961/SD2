@@ -483,7 +483,6 @@ class MultiplayerLobbyView(arcade.View):
         self.manager = UIManager()
         self.manager.enable()
 
-        # === ЗАГОЛОВОК ===
         title_label = UILabel(
             text=f"ЛОББИ: {self.room.get('name', 'Комната')}",
             font_size=36,
@@ -495,7 +494,6 @@ class MultiplayerLobbyView(arcade.View):
         title_anchor.add(title_label, anchor_x="center", anchor_y="top", align_y=-60)
         self.manager.add(title_anchor)
 
-        # === ГОД СЦЕНАРИЯ ===
         year_label = UILabel(
             text=f"Сценарий: {self.year}",
             font_size=20,
@@ -506,14 +504,12 @@ class MultiplayerLobbyView(arcade.View):
         year_anchor.add(year_label, anchor_x="center", anchor_y="top", align_y=-110)
         self.manager.add(year_anchor)
 
-        # === КНОПКА НАЗАД ===
         back_btn = UIFlatButton(text="< НАЗАД", width=200, height=60, style=MAIN_BUTTON_STYLE)
         back_btn.on_click = lambda e: self._leave_and_back()
         back_anchor = UIAnchorLayout()
         back_anchor.add(back_btn, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
         self.manager.add(back_anchor)
 
-        # === ТАЙМЕР ===
         if self.time_left is not None and self.time_left > 0:
             timer_label = UILabel(
                 text=f"Игра начнется через {int(self.time_left)} сек",
@@ -526,11 +522,9 @@ class MultiplayerLobbyView(arcade.View):
             timer_anchor.add(timer_label, anchor_x="center", anchor_y="top", align_y=-160)
             self.manager.add(timer_anchor)
 
-        # === ОСНОВНОЙ КОНТЕЙНЕР ===
         main_layout = UIBoxLayout(vertical=False, space_between=30)
         main_layout.with_padding(top=10, bottom=10, left=30, right=30)
 
-        # ========== ЛЕВАЯ ПАНЕЛЬ: ИГРОКИ ==========
         left_panel = UIBoxLayout(vertical=True, space_between=12)
         left_panel.with_padding(top=15, bottom=15, left=15, right=15)
         left_panel.with_background(color=(28, 30, 34, 200))
@@ -568,7 +562,6 @@ class MultiplayerLobbyView(arcade.View):
             player_box.add(player_info)
             left_panel.add(player_box)
 
-        # Кнопки управления
         button_box = UIBoxLayout(vertical=True, space_between=8)
         button_box.with_padding(top=10, bottom=0, left=0, right=0)
 
@@ -594,7 +587,6 @@ class MultiplayerLobbyView(arcade.View):
         left_panel.add(button_box)
         main_layout.add(left_panel)
 
-        # ========== ПРАВАЯ ПАНЕЛЬ: СТРАНЫ ==========
         right_panel = UIBoxLayout(vertical=True, space_between=8, align="top")
         right_panel.with_padding(top=15, bottom=15, left=15, right=15)
         right_panel.with_background(color=(28, 30, 34, 200))
@@ -623,7 +615,6 @@ class MultiplayerLobbyView(arcade.View):
             )
             right_panel.add(selected_label)
 
-        # Сетка стран
         num_cols = 5
         countries_grid = UIBoxLayout(vertical=False, space_between=8, align="top")
         columns = [UIBoxLayout(vertical=True, space_between=4, align="top") for _ in range(num_cols)]
@@ -714,8 +705,8 @@ class MultiplayerLobbyView(arcade.View):
                              json={"player_id": self.player_id})
 
     def _start_game(self):
-        """Запуск игры"""
         print("🚀 Запуск игры...")
+        self.client.game_id = self.game_id
         game_view = game.Game(
             self.year,
             self.my_country or "Германия",
@@ -723,7 +714,8 @@ class MultiplayerLobbyView(arcade.View):
             is_multiplayer=True,
             client=self.client
         )
-        self.window.show_view(game_view)
+        if self.window:
+            self.window.show_view(game_view)
 
     def on_hide_view(self):
         if self.manager:

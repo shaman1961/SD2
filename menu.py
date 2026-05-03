@@ -5,7 +5,6 @@ from save_manager import has_save, delete_save
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 
-# === СПИСКИ СТРАН ПО СЦЕНАРИЯМ ===
 COUNTRIES_BY_YEAR = {
     1938: [
         "Германия", "СССР", "Британия", "Франция", "Италия",
@@ -24,13 +23,10 @@ COUNTRIES_BY_YEAR = {
     ]
 }
 
-# === ЦВЕТА ===
 BG = (242, 238, 228)
 DARK = (40, 40, 40)
 MID = (110, 110, 110)
 
-# === СТИЛИ КНОПОК ===
-# Основной стиль (26 пт) — для кнопок меню, навигации, действий
 MAIN_BUTTON_STYLE = {
     "normal": {
         "font_name": ("Courier New",),
@@ -49,7 +45,6 @@ MAIN_BUTTON_STYLE = {
     }
 }
 
-# Стиль кнопок стран (18 пт) — для компактного отображения списка стран
 COUNTRY_BUTTON_STYLE = {
     "normal": {
         "font_name": ("Courier New",),
@@ -68,9 +63,7 @@ COUNTRY_BUTTON_STYLE = {
     }
 }
 
-# ============================================================================
-# КЛАСС Plane (анимация самолётов)
-# ============================================================================
+
 class Plane(arcade.Sprite):
     def __init__(self, center_y, speed):
         super().__init__()
@@ -105,9 +98,7 @@ class Plane(arcade.Sprite):
         else:
             self.center_x -= 200 * delta_time
 
-# ============================================================================
-# КЛАСС Cloud (анимация облаков)
-# ============================================================================
+
 class Cloud(arcade.Sprite):
     def __init__(self, centre_y, reverse=False):
         super().__init__()
@@ -133,9 +124,7 @@ class Cloud(arcade.Sprite):
         else:
             self.center_x += 50 * delta_time
 
-# ============================================================================
-# КЛАСС GameModeMenu (ПЕРВЫЙ ЭКРАН - Выбор режима игры)
-# ============================================================================
+
 class GameModeMenu(arcade.View):
     """Первый экран: Выбор режима игры (ИИ/Мультиплеер) + ВЫХОД + Статистика"""
     def __init__(self):
@@ -143,7 +132,7 @@ class GameModeMenu(arcade.View):
         arcade.set_background_color(BG)
         self.cloud_list = None
         self.plane_list = None
-        self.animation_ = 0  # === АНИМАЦИЯ ВЫКЛЮЧЕНА ПО УМОЛЧАНИЮ ===
+        self.animation_ = 0
 
     def on_show_view(self):
         self.animation_ = 0
@@ -156,20 +145,17 @@ class GameModeMenu(arcade.View):
         self.manager = UIManager()
         self.manager.enable()
 
-        # Центральная панель с кнопками режимов
         self.box = UIBoxLayout(vertical=True, space_between=30)
 
-        # Кнопка "Против ИИ"
         b_ai = UIFlatButton(
             text="ПРОТИВ ИИ",
             width=520,
             height=56,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b_ai.on_click = lambda e: self.window.show_view(ScenarioMenu())
         self.box.add(b_ai)
 
-        # Кнопка "Мультиплеер" (открывает отдельный файл)
         b_mp = UIFlatButton(
             text="МУЛЬТИПЛЕЕР",
             width=520,
@@ -179,41 +165,37 @@ class GameModeMenu(arcade.View):
         b_mp.on_click = lambda e: self.window.show_view(MultiplayerMenu())
         self.box.add(b_mp)
 
-        # Размещаем центральную панель
         self.root = UIAnchorLayout()
         self.root.add(self.box, anchor_x="center", anchor_y="center")
         self.manager.add(self.root)
 
-        # === КНОПКА ВЫХОДА (левый верхний угол) - ТОЛЬКО ЗДЕСЬ ===
         b_exit = UIFlatButton(
             text="< ВЫХОД",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b_exit.on_click = lambda e: arcade.exit()
         exit_anchor = UIAnchorLayout()
         exit_anchor.add(b_exit, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
         self.manager.add(exit_anchor)
 
-        # === КНОПКА СТАТИСТИКИ (правый нижний угол) ===
         b_stats = UIFlatButton(
             text="> Статистика",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b_stats.on_click = lambda e: self.window.show_view(StatisticsView())
         stats_anchor = UIAnchorLayout()
         stats_anchor.add(b_stats, anchor_x="right", anchor_y="bottom", align_x=-20, align_y=20)
         self.manager.add(stats_anchor)
 
-        # === КНОПКА АНИМАЦИИ (левый нижний угол) - вкл/выкл ===
         b_animation = UIFlatButton(
             text="ВЫКЛ" if self.animation_ == 0 else "ВКЛ",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b_animation.on_click = lambda e: self.toggle_animation()
         anim_anchor = UIAnchorLayout()
@@ -226,20 +208,17 @@ class GameModeMenu(arcade.View):
         """Переключатель анимации (ВКЛ/ВЫКЛ)"""
         self.animation_ = 1 if self.animation_ == 0 else 0
 
-        # Обновляем текст кнопки
         if self.animation_ == 1:
             self.animation_button.text = "ВКЛ"
         else:
             self.animation_button.text = "ВЫКЛ"
 
-        # Если выключили - удаляем анимацию
         if self.animation_ == 0:
             if self.plane_list:
                 self.plane_list = None
             if self.cloud_list:
                 self.cloud_list = None
         else:
-            # Если включили - создаём анимацию
             self.plane_list = arcade.SpriteList()
             self.cloud_list = arcade.SpriteList()
 
@@ -260,7 +239,6 @@ class GameModeMenu(arcade.View):
     def on_draw(self):
         self.clear()
 
-        # Заголовок
         arcade.draw_text(
             "STEEL DAWN 2",
             self.window.width // 2,
@@ -271,7 +249,6 @@ class GameModeMenu(arcade.View):
             font_name=("Courier New",)
         )
 
-        # Подзаголовок
         arcade.draw_text(
             "ВОЕННО-СТРАТЕГИЧЕСКИЙ СИМУЛЯТОР АЛЬТЕРНАТИВНОЙ ИСТОРИИ",
             self.window.width // 2,
@@ -282,7 +259,6 @@ class GameModeMenu(arcade.View):
             font_name=("Courier New",)
         )
 
-        # Рамка вокруг кнопок
         arcade.draw_lrbt_rectangle_outline(
             left=self.window.width // 2 - 300,
             right=self.window.width // 2 + 300,
@@ -294,13 +270,11 @@ class GameModeMenu(arcade.View):
 
         self.manager.draw()
 
-        # Анимация (только если включена)
         if self.animation_ == 1 and self.cloud_list is not None and self.plane_list is not None:
             self.cloud_list.draw()
             self.plane_list.draw()
 
     def on_update(self, delta_time):
-        # Анимация работает только если включена
         if self.animation_ == 1:
             if self.cloud_list and self.plane_list:
                 self.cloud_list.update()
@@ -320,9 +294,7 @@ class GameModeMenu(arcade.View):
                     cloud = Cloud(SCREEN_HEIGHT // 7 * i, rev)
                     self.cloud_list.append(cloud)
 
-# ============================================================================
-# КЛАСС ScenarioMenu (ВТОРОЙ ЭКРАН - Выбор сценария)
-# ============================================================================
+
 class ScenarioMenu(arcade.View):
     """Второй экран: Выбор сценария (1938/1941/Продолжить) + КНОПКА НАЗАД"""
     def __init__(self):
@@ -341,60 +313,54 @@ class ScenarioMenu(arcade.View):
 
         self.box = UIBoxLayout(vertical=True, space_between=30)
 
-        # === КНОПКА "ПРОДОЛЖИТЬ ИГРУ" (только если есть сохранение) ===
         if has_save():
             b_continue = UIFlatButton(
                 text="> ПРОДОЛЖИТЬ ИГРУ",
                 width=520,
                 height=56,
-                style=MAIN_BUTTON_STYLE  # ← 26 пт
+                style=MAIN_BUTTON_STYLE
             )
             b_continue.on_click = lambda e: self._load_saved_game()
             self.box.add(b_continue)
 
-        # Кнопка "Кампания 1938"
         b1938 = UIFlatButton(
             text="> НАЧАТЬ КАМПАНИЮ 1938",
             width=520,
             height=56,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b1938.on_click = lambda e: (delete_save(), self.window.show_view(CountrySelectionView(1938)))
         self.box.add(b1938)
 
-        # Кнопка "Кампания 1941"
         b1941 = UIFlatButton(
             text="> НАЧАТЬ КАМПАНИЮ 1941",
             width=520,
             height=56,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b1941.on_click = lambda e: (delete_save(), self.window.show_view(CountrySelectionView(1941)))
         self.box.add(b1941)
 
-        # === КНОПКА НАЗАД (левый верхний угол) - ВОЗВРАЩАЕТ НА ГЛАВНЫЙ ЭКРАН ===
         b_back = UIFlatButton(
             text="< НАЗАД",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         b_back.on_click = lambda e: self.window.show_view(GameModeMenu())
         back_anchor = UIAnchorLayout()
         back_anchor.add(b_back, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
         self.manager.add(back_anchor)
 
-        # Размещаем панель
         self.root = UIAnchorLayout()
         self.root.add(
             self.box,
             anchor_x="center",
             anchor_y="center",
-            align_y=-50  # ← Сдвиг панели кнопок выше
+            align_y=-50
         )
         self.manager.add(self.root)
 
-        # === ПРЕДУПРЕЖДЕНИЕ (отдельно, ниже кнопок) ===
         if has_save():
             warning = UILabel(
                 text="⚠️ Новая игра удалит сохранённый прогресс навсегда",
@@ -406,10 +372,9 @@ class ScenarioMenu(arcade.View):
                 warning,
                 anchor_x="center",
                 anchor_y="center",
-                align_y=-200  # ← Сдвиг ниже (регулируйте это число)
+                align_y=-200
             )
             self.manager.add(warning_anchor)
-        # ================================================
 
     def _load_saved_game(self):
         """Загрузка сохранённой игры"""
@@ -429,7 +394,6 @@ class ScenarioMenu(arcade.View):
     def on_draw(self):
         self.clear()
 
-        # Заголовок
         arcade.draw_text(
             "ДОСТУПНЫЕ СЦЕНАРИИ",
             self.window.width // 2,
@@ -440,21 +404,18 @@ class ScenarioMenu(arcade.View):
             font_name=("Courier New",)
         )
 
-        # Рамка
         arcade.draw_lrbt_rectangle_outline(
             left=self.window.width // 2 - 300,
             right=self.window.width // 2 + 300,
-            top=self.window.height // 2 + 80,  # ← Было +110
-            bottom=self.window.height // 2 - 180,  # ← Было -110
+            top=self.window.height // 2 + 80,
+            bottom=self.window.height // 2 - 180,
             color=(180, 180, 180),
             border_width=1
         )
 
         self.manager.draw()
 
-# ============================================================================
-# КЛАСС CountrySelectionView (ТРЕТИЙ ЭКРАН - Выбор страны)
-# ============================================================================
+
 class CountrySelectionView(arcade.View):
     """Третий экран: Выбор страны с ФЛАГАМИ + КНОПКА НАЗАД"""
     def __init__(self, year):
@@ -473,53 +434,45 @@ class CountrySelectionView(arcade.View):
         self.manager = UIManager()
         self.manager.enable()
 
-        # Создаём колонки для стран (6 колонок)
         num_cols = 6
         columns = [UIBoxLayout(vertical=True, space_between=10) for _ in range(num_cols)]
 
         for i, country in enumerate(self.countries):
-            # === ФЛАГИ СТРАН ===
             flag_path = f"images/flags/{country}.png"
             try:
                 texture = arcade.load_texture(flag_path)
                 flag_widget = UIImage(texture=texture, width=120, height=75)
             except:
-                # Если флаг не найден - показываем первые 3 буквы
                 flag_widget = UILabel(text=country[:3], width=120, height=75)
 
-            # Кнопка выбора страны — ИСПОЛЬЗУЕМ ОТДЕЛЬНЫЙ СТИЛЬ (18 пт)
             btn = UIFlatButton(
                 text=f" > {country.upper()}",
                 width=220,
                 height=30,
-                style=COUNTRY_BUTTON_STYLE  # ← 18 пт (изменено!)
+                style=COUNTRY_BUTTON_STYLE
             )
             btn.on_click = lambda e, c=country: self.window.show_view(
                 game.Game(self.year, c, is_new_game=True)
             )
 
-            # Блок страны (флаг + кнопка)
             country_block = UIBoxLayout(vertical=True, space_between=5)
             country_block.add(flag_widget)
             country_block.add(btn)
 
             columns[i % num_cols].add(country_block)
 
-        # Горизонтальная панель с колонками
         cols_row = UIBoxLayout(vertical=False, space_between=5, align="top")
         for col in columns:
             cols_row.add(col)
 
-        # === КНОПКА НАЗАД (левый верхний угол) - ВОЗВРАЩАЕТ НА ВЫБОР СЦЕНАРИЯ ===
         back_button = UIFlatButton(
             text="< НАЗАД",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт (осталось как было)
+            style=MAIN_BUTTON_STYLE
         )
         back_button.on_click = lambda e: self.window.show_view(ScenarioMenu())
 
-        # Размещаем элементы
         root = UIAnchorLayout()
         root.add(cols_row, anchor_x="center", anchor_y="top", align_y=-130)
         root.add(back_button, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
@@ -533,7 +486,6 @@ class CountrySelectionView(arcade.View):
     def on_draw(self):
         self.clear()
 
-        # Год сценария
         arcade.draw_text(
             str(self.year),
             self.window.width // 2,
@@ -547,9 +499,7 @@ class CountrySelectionView(arcade.View):
 
         self.manager.draw()
 
-# ============================================================================
-# КЛАСС StatisticsView (Экран статистики)
-# ============================================================================
+
 class StatisticsView(arcade.View):
     """Экран статистики игрока + КНОПКА НАЗАД"""
     def __init__(self):
@@ -569,12 +519,11 @@ class StatisticsView(arcade.View):
         self.manager = UIManager()
         self.manager.enable()
 
-        # === КНОПКА НАЗАД (левый верхний угол) - ВОЗВРАЩАЕТ НА ГЛАВНЫЙ ЭКРАН ===
         back_button = UIFlatButton(
             text="< НАЗАД",
             width=250,
             height=75,
-            style=MAIN_BUTTON_STYLE  # ← 26 пт
+            style=MAIN_BUTTON_STYLE
         )
         back_button.on_click = lambda e: self.window.show_view(GameModeMenu())
 
@@ -582,7 +531,6 @@ class StatisticsView(arcade.View):
         back_anchor.add(back_button, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
         self.manager.add(back_anchor)
 
-        # Панель статистики
         panel = UIBoxLayout(vertical=True, space_between=10)
         panel.with_padding(top=14, bottom=14, left=16, right=16)
         panel.with_background(color=(28, 30, 34, 230))
@@ -616,12 +564,5 @@ class StatisticsView(arcade.View):
         self.manager.draw()
 
 
-# ============================================================================
-# ИМПОРТ МУЛЬТИПЛЕЕРА (из отдельного файла)
-# ============================================================================
 from multiplayer_menu import MultiplayerMenu
-
-# ============================================================================
-# АЛИАС для совместимости с main.py
-# ============================================================================
 Menu = GameModeMenu

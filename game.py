@@ -166,8 +166,13 @@ class Game(arcade.View):
             if self.client:
                 self.network = self.client
                 self.player_id = self.client.player_id
-                self.game_id = self.client.game_id
-                print(f"✅ Подключено к серверу: {self.player_id}")
+                # game_id получаем из состояния сервера, а не из client
+                state = self.client.get_game_state()
+                if state:
+                    self.game_id = state.get('id')
+                else:
+                    self.game_id = self.client.game_id
+                print(f"✅ Подключено к серверу: {self.player_id}, игра: {self.game_id}")
         except Exception as e:
             print(f"⚠️ Не удалось подключиться к серверу: {e}")
             self.is_multiplayer = False
