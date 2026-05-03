@@ -194,3 +194,7 @@ class Country:
                     state["researching"] = False
                     state["turns_left"] = 0
 
+    def get_combat_loss_bonus(self) -> float:
+        """Возвращает множитель потерь в бою (1.0 = 100% потерь, 0.5 = 50%)"""
+        army_level = self.tech_state.get("army", {}).get("level", 0)
+        return max(0.5, 1.0 - (army_level * 0.10))

@@ -76,7 +76,13 @@ class NetworkClient:
         r = self._req('POST', f'/api/game/{self.game_id}/action', json={"player_id": self.player_id, "action_type": action_type, **kw})
         return r.json() if r else {"error": "Request failed"}
 
-    def end_turn(self) -> Dict: return self.send_action('end_turn')
+    def end_turn(self) -> Dict:
+        """Завершить ход"""
+        if not self.game_id or not self.player_id:
+            return {"error": "Not connected"}
+        r = self._req('POST', f'/api/game/{self.game_id}/end_turn',
+                      json={"player_id": self.player_id})
+        return r.json() if r else {"error": "Request failed"}
 
     def poll_updates(self, callback: Callable, interval: float = 2.0) -> Optional[threading.Thread]:
         if not self.game_id: return None

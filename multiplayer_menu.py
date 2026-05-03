@@ -21,7 +21,6 @@ MID = (110, 110, 110)
 GREEN = (100, 180, 100)
 RED = (180, 100, 100)
 
-# 🔧 Исправлены ключи стилей (убраны пробелы, иначе arcade.gui их игнорирует)
 MAIN_BUTTON_STYLE = {
     "normal": {"font_name": ("Courier New",), "font_size": 26, "font_color": DARK, "bg": (0, 0, 0, 0), "border": 0},
     "hover": {"font_color": (0, 0, 0), "bg": (220, 215, 205, 160)},
@@ -46,12 +45,11 @@ class MultiplayerMenu(arcade.View):
             server_url="http://192.168.0.148:5443",
             secret_code="SteelDawn2024"
         )
-        self.client.load_player_session()
         self.rooms = []
         self.last_refresh = 0
         self.refresh_interval = 3.0
         self.player_name = None
-        self.pending_join_room = None  # 🔧 Для корректного возврата после регистрации
+        self.pending_join_room = None
 
     def on_show_view(self):
         self._fetch_rooms()
@@ -62,7 +60,7 @@ class MultiplayerMenu(arcade.View):
         if self.last_refresh >= self.refresh_interval:
             self.last_refresh = 0
             self._fetch_rooms()
-            self._update_room_list()  # 🔧 Обновляем только список комнат, а не весь UI
+            self._update_room_list()
 
     def _fetch_rooms(self):
         try:
@@ -112,11 +110,11 @@ class MultiplayerMenu(arcade.View):
         rooms_title = UILabel(text="ДОСТУПНЫЕ КОМНАТЫ:", font_size=22, text_color=DARK, font_name=("Courier New",))
         main_box.add(rooms_title)
 
-        self.rooms_box = UIBoxLayout(vertical=True, space_between=12)  # 🔧 Сохраняем ссылку
+        self.rooms_box = UIBoxLayout(vertical=True, space_between=12)
         self._update_room_list()
         main_box.add(self.rooms_box)
 
-        refresh_label = UILabel(text="🔄 Автообновление...", font_size=14, text_color=MID, font_name=("Courier New",))
+        refresh_label = UILabel(text="Автообновление...", font_size=14, text_color=MID, font_name=("Courier New",))
         main_box.add(refresh_label)
 
         root = UIAnchorLayout()
@@ -124,7 +122,6 @@ class MultiplayerMenu(arcade.View):
         self.manager.add(root)
 
     def _update_room_list(self):
-        """🔧 Обновляет только контейнер комнат, не пересоздавая весь UI"""
         if not hasattr(self, 'rooms_box') or not self.rooms_box:
             return
         self.rooms_box.clear()
@@ -162,7 +159,6 @@ class MultiplayerMenu(arcade.View):
     def _on_registration_done(self, player_id, player_name=None):
         if player_id:
             self.player_name = player_name or "Игрок"
-            # 🔧 Если игрок пытался зайти в комнату до регистрации — возвращаем его туда
             if self.pending_join_room:
                 room = self.pending_join_room
                 self.pending_join_room = None
@@ -200,9 +196,6 @@ class MultiplayerMenu(arcade.View):
     def on_hide_view(self):
         if self.manager:
             self.manager.disable()
-        # 🔧 Безопасная остановка фонового потока
-        if hasattr(self, 'poll_thread') and self.poll_thread and self.poll_thread.is_alive():
-            self.poll_thread.join(timeout=1.0)
 
     def on_draw(self):
         self.clear()
@@ -378,15 +371,39 @@ class CreateRoomView(arcade.View):
             return
 
         game_id = self.client.create_game(year=self.scenario_year, turn_time=180)
+
+        if not game_id:
+            print("⚠️ Не удалось создать комнату. Возможно, сессия устарела.")
+            self.client.player_id = None
+            self.window.show_view(PlayerRegistrationView(
+                self.client,
+                callback=lambda pid, name: self._retry_create_room(pid, name)
+            ))
+            return
+
+        room_data = {
+            "id": game_id, "name": self.room_name, "year": self.scenario_year,
+            "players": [{"name": self.player_name, "country": None, "ready": False, "is_host": True,
+                         "player_id": self.player_id}],
+            "is_host": True
+        }
+        self.window.show_view(MultiplayerLobbyView(self.client, self.player_id, room_data))
+
+    def _retry_create_room(self, player_id, player_name):
+        self.player_id = player_id
+        self.player_name = player_name
+
+        game_id = self.client.create_game(year=self.scenario_year, turn_time=180)
         if game_id:
             room_data = {
                 "id": game_id, "name": self.room_name, "year": self.scenario_year,
-                "players": [{"name": self.player_name, "country": None, "ready": False, "is_host": True, "player_id": self.player_id}],
+                "players": [{"name": self.player_name, "country": None, "ready": False, "is_host": True,
+                             "player_id": self.player_id}],
                 "is_host": True
             }
             self.window.show_view(MultiplayerLobbyView(self.client, self.player_id, room_data))
         else:
-            print("Ошибка создания комнаты")
+            print("❌ Снова ошибка создания комнаты")
 
     def on_hide_view(self):
         if self.manager:
@@ -399,6 +416,7 @@ class CreateRoomView(arcade.View):
 
 class MultiplayerLobbyView(arcade.View):
     """Лобби комнаты — выбор стран, готовность, чат, таймер"""
+
     def __init__(self, client, player_id, room_data):
         super().__init__()
         arcade.set_background_color(BG)
@@ -414,26 +432,37 @@ class MultiplayerLobbyView(arcade.View):
         self.country_selected = False
         self.is_ready = False
         self.is_host = room_data.get("is_host", False)
-        self.poll_thread = None
         self.time_left = None
         self.bot_mode_enabled = False
-        self.pending_state = None  # 🔧 Очередь для безопасного обновления GUI
+        self.poll_timer = 0
+        self.poll_interval = 1.0
+        self._game_started = False
 
     def on_show_view(self):
         self.setup_gui()
-        self.poll_thread = self.client.poll_updates(self._on_game_state_update, interval=1.0)
 
     def on_update(self, delta_time):
-        # 🔧 Применяем сетевое состояние только в главном потоке
-        if self.pending_state is not None:
-            self._apply_state_update(self.pending_state)
-            self.pending_state = None
-
-    def _on_game_state_update(self, state):
-        # 🔧 Только запоминаем данные, НЕ трогаем GUI
-        self.pending_state = state
+        self.poll_timer += delta_time
+        if self.poll_timer >= self.poll_interval:
+            self.poll_timer = 0
+            try:
+                state = self.client.get_game_state()
+                if state:
+                    self._apply_state_update(state)
+            except Exception as e:
+                print(f"⚠️ Lobby poll error: {e}")
 
     def _apply_state_update(self, state):
+        if not state:
+            return
+
+        if state.get("state") == "playing":
+            print("🎮 Сервер сообщил: игра запущена!")
+            if not self._game_started:
+                self._game_started = True
+                self._start_game()
+            return
+
         self.players = state.get("players", [])
         self.time_left = state.get("time_left")
         self.bot_mode_enabled = state.get("bot_mode_enabled", False)
@@ -445,10 +474,6 @@ class MultiplayerLobbyView(arcade.View):
                     self.country_selected = True
                 break
 
-        if state.get("state") == "playing":
-            self._start_game()
-            return
-
         self.setup_gui()
 
     def setup_gui(self):
@@ -458,107 +483,185 @@ class MultiplayerLobbyView(arcade.View):
         self.manager = UIManager()
         self.manager.enable()
 
-        title_label = UILabel(text=f"ЛОББИ: {self.room.get('name', 'Комната')}", font_size=40, text_color=DARK, font_name=("Courier New",))
+        # === ЗАГОЛОВОК ===
+        title_label = UILabel(
+            text=f"ЛОББИ: {self.room.get('name', 'Комната')}",
+            font_size=36,
+            text_color=DARK,
+            font_name=("Courier New",),
+            bold=True
+        )
         title_anchor = UIAnchorLayout()
-        title_anchor.add(title_label, anchor_x="center", anchor_y="top", align_y=-80)
+        title_anchor.add(title_label, anchor_x="center", anchor_y="top", align_y=-60)
         self.manager.add(title_anchor)
 
-        back_btn = UIFlatButton(text="< НАЗАД", width=250, height=75, style=MAIN_BUTTON_STYLE)
+        # === ГОД СЦЕНАРИЯ ===
+        year_label = UILabel(
+            text=f"Сценарий: {self.year}",
+            font_size=20,
+            text_color=MID,
+            font_name=("Courier New",)
+        )
+        year_anchor = UIAnchorLayout()
+        year_anchor.add(year_label, anchor_x="center", anchor_y="top", align_y=-110)
+        self.manager.add(year_anchor)
+
+        # === КНОПКА НАЗАД ===
+        back_btn = UIFlatButton(text="< НАЗАД", width=200, height=60, style=MAIN_BUTTON_STYLE)
         back_btn.on_click = lambda e: self._leave_and_back()
         back_anchor = UIAnchorLayout()
         back_anchor.add(back_btn, anchor_x="left", anchor_y="top", align_x=20, align_y=-20)
         self.manager.add(back_anchor)
 
-        main_layout = UIBoxLayout(vertical=False, space_between=40)
-        main_layout.with_padding(top=20, bottom=20, left=40, right=40)
-
-        left_column = UIBoxLayout(vertical=True, space_between=20)
-        left_column.with_padding(top=20, bottom=20, left=20, right=20)
-
-        players_title = UILabel(text=f"ИГРОКИ ({len(self.players)}/{self.max_players}):", font_size=20, text_color=DARK, font_name=("Courier New",))
-        left_column.add(players_title)
-
-        players_box = UIBoxLayout(vertical=True, space_between=10)
-        for player in self.players:
-            player_row = UIBoxLayout(vertical=False, space_between=10)
-            if player.get("country"):
-                flag_path = f"images/flags/{player['country']}.png"
-                try:
-                    texture = arcade.load_texture(flag_path)
-                    flag = UIImage(texture=texture, width=50, height=35)
-                except:
-                    flag = UILabel(text=player["country"][:3], width=50, height=35)
-            else:
-                flag = UILabel(text="---", width=50, height=35)
-
-            player_row.add(flag)
-            status = "[ГОТОВ]" if player.get("ready", False) else "[НЕ ГОТОВ]"
-            host_mark = " (Х)" if player.get("is_host", False) else ""
-            country_text = player.get("country") if player.get("country") else "—"
-            player_info = UILabel(text=f"{player.get('name', 'Игрок')[:15]}{host_mark}\n{country_text} {status}",
-                                  font_size=14, text_color=DARK, font_name=("Courier New",), width=180)
-            player_row.add(player_info)
-            players_box.add(player_row)
-        left_column.add(players_box)
-
+        # === ТАЙМЕР ===
         if self.time_left is not None and self.time_left > 0:
-            timer_label = UILabel(text=f"Игра начнётся через {int(self.time_left)} сек", font_size=24, text_color=RED, font_name=("Courier New",), bold=True)
-            left_column.add(timer_label)
+            timer_label = UILabel(
+                text=f"Игра начнется через {int(self.time_left)} сек",
+                font_size=24,
+                text_color=RED,
+                font_name=("Courier New",),
+                bold=True
+            )
+            timer_anchor = UIAnchorLayout()
+            timer_anchor.add(timer_label, anchor_x="center", anchor_y="top", align_y=-160)
+            self.manager.add(timer_anchor)
 
-        ready_box = UIBoxLayout(vertical=True, space_between=15)
-        self.ready_btn = UIFlatButton(text="ГОТОВ" if not self.is_ready else "НЕ ГОТОВ", width=220, height=45, style=MAIN_BUTTON_STYLE)
-        self.ready_btn.on_click = lambda e: self._toggle_ready()
-        ready_box.add(self.ready_btn)
+        # === ОСНОВНОЙ КОНТЕЙНЕР ===
+        main_layout = UIBoxLayout(vertical=False, space_between=30)
+        main_layout.with_padding(top=10, bottom=10, left=30, right=30)
 
-        if self.is_host and not self.bot_mode_enabled:
-            bots_btn = UIFlatButton(text="ИГРАТЬ С БОТАМИ", width=220, height=45, style=MAIN_BUTTON_STYLE)
-            bots_btn.on_click = lambda e: self._enable_bots()
-            ready_box.add(bots_btn)
+        # ========== ЛЕВАЯ ПАНЕЛЬ: ИГРОКИ ==========
+        left_panel = UIBoxLayout(vertical=True, space_between=12)
+        left_panel.with_padding(top=15, bottom=15, left=15, right=15)
+        left_panel.with_background(color=(28, 30, 34, 200))
+        left_panel.width = 380
+        left_panel.height = 600
 
-        if self.is_host and len(self.players) >= 2 and not self.bot_mode_enabled:
-            start_btn = UIFlatButton(text="НАЧАТЬ ИГРУ", width=220, height=45, style=MAIN_BUTTON_STYLE)
-            start_btn.on_click = lambda e: self._start_game()  # 🔧 Исправлено: было _enable_bots()
-            ready_box.add(start_btn)
+        players_title = UILabel(
+            text=f"ИГРОКИ ({len(self.players)}/{self.max_players})",
+            font_size=18,
+            text_color=(255, 255, 255),
+            font_name=("Courier New",),
+            bold=True,
+            width=350
+        )
+        left_panel.add(players_title)
+        left_panel.add(UILabel(text="─" * 30, font_size=12, text_color=MID, width=350))
 
-        left_column.add(ready_box)
-        main_layout.add(left_column)
+        for player in self.players:
+            player_box = UIBoxLayout(vertical=False, space_between=10)
+            player_box.with_padding(top=5, bottom=5, left=5, right=5)
 
-        right_column = UIBoxLayout(vertical=True, space_between=15)
-        right_column.with_padding(top=20, bottom=20, left=20, right=20)
+            host_mark = "[HOST]" if player.get("is_host", False) else ""
+            ready_mark = "[OK]" if player.get("ready", False) else "[..]"
+            name = player.get('name', 'Игрок')[:12]
+            country_name = player.get("country") or "---"
 
-        countries_title = UILabel(text="ВЫБЕРИТЕ СТРАНУ:", font_size=20, text_color=DARK, font_name=("Courier New",))
-        right_column.add(countries_title)
+            player_info = UILabel(
+                text=f"{host_mark} {ready_mark} {name}\n    {country_name}",
+                font_size=14,
+                text_color=(220, 220, 220),
+                font_name=("Courier New",),
+                width=250,
+                align="left"
+            )
+            player_box.add(player_info)
+            left_panel.add(player_box)
 
-        countries_grid = UIBoxLayout(vertical=False, space_between=6)
-        columns = [UIBoxLayout(vertical=True, space_between=6) for _ in range(6)]
+        # Кнопки управления
+        button_box = UIBoxLayout(vertical=True, space_between=8)
+        button_box.with_padding(top=10, bottom=0, left=0, right=0)
+
+        if not self.is_ready:
+            ready_btn = UIFlatButton(text="[ ГОТОВ ]", width=350, height=45, style=MAIN_BUTTON_STYLE)
+            ready_btn.on_click = lambda e: self._toggle_ready()
+            button_box.add(ready_btn)
+
+        if self.is_host:
+            if not self.bot_mode_enabled:
+                bots_btn = UIFlatButton(text="ИГРАТЬ С БОТАМИ", width=350, height=45, style=MAIN_BUTTON_STYLE)
+                bots_btn.on_click = lambda e: self._enable_bots()
+                button_box.add(bots_btn)
+
+            all_chose = all(p.get("country") is not None for p in self.players)
+            all_ready = all(p.get("ready", False) for p in self.players)
+
+            if (all_chose and all_ready) or self.bot_mode_enabled:
+                start_btn = UIFlatButton(text="НАЧАТЬ ИГРУ", width=350, height=50, style=MAIN_BUTTON_STYLE)
+                start_btn.on_click = lambda e: self._start_countdown()
+                button_box.add(start_btn)
+
+        left_panel.add(button_box)
+        main_layout.add(left_panel)
+
+        # ========== ПРАВАЯ ПАНЕЛЬ: СТРАНЫ ==========
+        right_panel = UIBoxLayout(vertical=True, space_between=8, align="top")
+        right_panel.with_padding(top=15, bottom=15, left=15, right=15)
+        right_panel.with_background(color=(28, 30, 34, 200))
+        right_panel.width = 850
+        right_panel.height = 600
+
+        countries_title = UILabel(
+            text="ВЫБОР СТРАНЫ",
+            font_size=18,
+            text_color=(255, 255, 255),
+            font_name=("Courier New",),
+            bold=True,
+            width=820
+        )
+        right_panel.add(countries_title)
+        right_panel.add(UILabel(text="─" * 65, font_size=12, text_color=MID, width=820))
+
+        if self.my_country:
+            selected_label = UILabel(
+                text=f"Выбрано: {self.my_country}",
+                font_size=16,
+                text_color=GREEN,
+                font_name=("Courier New",),
+                bold=True,
+                width=820
+            )
+            right_panel.add(selected_label)
+
+        # Сетка стран
+        num_cols = 5
+        countries_grid = UIBoxLayout(vertical=False, space_between=8, align="top")
+        columns = [UIBoxLayout(vertical=True, space_between=4, align="top") for _ in range(num_cols)]
         occupied = [p.get("country") for p in self.players if p.get("country")]
 
         for i, country in enumerate(self.countries):
             is_occupied = country in occupied
-            btn = UIFlatButton(text=f"  > {country.upper()}", width=160, height=35, style=COUNTRY_BUTTON_STYLE)
+            is_my_country = country == self.my_country
+            btn_width = 160
+            btn_height = 38
 
-            if is_occupied:
-                btn.style = {"normal": {"font_color": RED, "bg": (180, 100, 100, 80), "border": 0},
-                             "hover": {"font_color": RED, "bg": (200, 120, 120, 100), "border": 0},
-                             "press": {"font_color": RED, "bg": (180, 100, 100, 80), "border": 0}}
-                btn.on_click = lambda e: None
+            if is_my_country:
+                btn_text = f"* {country}"
+                btn = UIFlatButton(text=btn_text, width=btn_width, height=btn_height, style=COUNTRY_BUTTON_STYLE)
+                btn.enabled = False
+            elif is_occupied:
+                btn_text = f"  {country}"
+                btn = UIFlatButton(text=btn_text, width=btn_width, height=btn_height, style=COUNTRY_BUTTON_STYLE)
+                btn.enabled = False
+            elif self.country_selected:
+                btn_text = f"  {country}"
+                btn = UIFlatButton(text=btn_text, width=btn_width, height=btn_height, style=COUNTRY_BUTTON_STYLE)
+                btn.enabled = False
             else:
-                btn.style = {"normal": {"font_color": GREEN, "bg": (100, 180, 100, 80), "border": 0},
-                             "hover": {"font_color": DARK, "bg": (220, 215, 205, 160), "border": 0},
-                             "press": {"font_color": DARK, "bg": (210, 205, 195, 180), "border": 0}}
-                if self.country_selected:
-                    btn.on_click = lambda e: None
-                else:
-                    btn.on_click = lambda e, c=country: self._select_country(c)
-            columns[i % 6].add(btn)
+                btn_text = f"  {country}"
+                btn = UIFlatButton(text=btn_text, width=btn_width, height=btn_height, style=COUNTRY_BUTTON_STYLE)
+                btn.on_click = lambda e, c=country: self._select_country(c)
+
+            columns[i % num_cols].add(btn)
 
         for col in columns:
             countries_grid.add(col)
-        right_column.add(countries_grid)
-        main_layout.add(right_column)
+
+        right_panel.add(countries_grid)
+        main_layout.add(right_panel)
 
         root = UIAnchorLayout()
-        root.add(main_layout, anchor_x="center", anchor_y="center", align_y=-30)
+        root.add(main_layout, anchor_x="center", anchor_y="center")
         self.manager.add(root)
 
     def on_key_press(self, key, modifiers):
@@ -571,16 +674,16 @@ class MultiplayerLobbyView(arcade.View):
 
     def _select_country(self, country):
         if self.country_selected:
-            print(f"⚠️ Страна уже выбрана: {self.my_country}")
             return
+
         occupied = [p.get("country") for p in self.players if p.get("country")]
         if country in occupied:
-            print(f"⚠️ Страна {country} уже занята")
             return
 
         self.my_country = country
         self.country_selected = True
-        print(f"Выбрано: {country}")
+        print(f"✅ Выбрана страна: {country}")
+
         success = self.client.join_game(self.game_id, country)
         if success:
             for player in self.players:
@@ -590,34 +693,41 @@ class MultiplayerLobbyView(arcade.View):
             self.setup_gui()
         else:
             self.country_selected = False
+            self.my_country = None
 
     def _toggle_ready(self):
         if not self.my_country:
-            print("⚠️ Сначала выберите страну!")
             return
         self.is_ready = not self.is_ready
-        self.ready_btn.text = "ГОТОВ" if not self.is_ready else "НЕ ГОТОВ"
+        self.setup_gui()
 
     def _enable_bots(self):
         if self.client.enable_bots():
             self.bot_mode_enabled = True
-            print("🤖 Режим с ботами включён, таймер запущен")
+            print("🤖 Режим с ботами включён")
+
+    def _start_countdown(self):
+        """Запуск обратного отсчёта"""
+        print("⏱ Запуск обратного отсчёта...")
+        if self.is_host:
+            self.client._req('POST', f'/api/game/{self.game_id}/start',
+                             json={"player_id": self.player_id})
 
     def _start_game(self):
-        print("Запуск игры...")
-        self.client.leave_game()
-        self.window.show_view(game.Game(
-            self.year, self.my_country or "Германия", is_new_game=True,
-            is_multiplayer=True, client=self.client
-        ))
+        """Запуск игры"""
+        print("🚀 Запуск игры...")
+        game_view = game.Game(
+            self.year,
+            self.my_country or "Германия",
+            is_new_game=True,
+            is_multiplayer=True,
+            client=self.client
+        )
+        self.window.show_view(game_view)
 
     def on_hide_view(self):
         if self.manager:
             self.manager.disable()
-        if self.poll_thread and self.poll_thread.is_alive():
-            self.poll_thread.join(timeout=1.0)
-        if self.client:
-            self.client.close()
 
     def on_draw(self):
         self.clear()
