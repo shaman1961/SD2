@@ -174,24 +174,20 @@ class MultiplayerMenu(arcade.View):
             print("❌ Ошибка: нет ID комнаты")
             return
 
-        occupied = [p.get('country') for p in room.get('players', []) if p.get('country')]
-        available = [c for c in COUNTRIES_BY_YEAR.get(room.get('year', 1938), [])
-                     if c not in occupied]
-
-        country = available[0] if available else None
-        if not country:
-            print("❌ Нет свободных стран")
+        state = self.client._req('GET', f'/api/game/{game_id}/state')
+        if not state:
+            print("❌ Не удалось получить состояние комнаты")
             return
 
-        success = self.client.join_game(game_id, country)
-        if success:
-            room_data = {
-                "id": game_id, "name": room.get('name', 'Комната'),
-                "year": room.get('year', 1938), "players": room.get('players', []), "is_host": False
-            }
-            self.window.show_view(MultiplayerLobbyView(self.client, self.client.player_id, room_data))
-        else:
-            print("❌ Не удалось присоединиться")
+        game_state = state.json()
+
+        room_data = {
+            "id": game_id, "name": room.get('name', 'Комната'),
+            "year": game_state.get('year', 1938),
+            "players": game_state.get('players', []),
+            "is_host": False
+        }
+        self.window.show_view(MultiplayerLobbyView(self.client, self.client.player_id, room_data))
 
     def on_hide_view(self):
         if self.manager:

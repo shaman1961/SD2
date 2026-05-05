@@ -1408,7 +1408,6 @@ class Game(arcade.View):
 
         self.army_sprite_list.clear()
         for prov_name, info in self.army_positions.items():
-            # Найти координаты провинции
             pos = None
             for prov in self.all_provinces:
                 if prov.name == prov_name:
@@ -1417,13 +1416,22 @@ class Game(arcade.View):
             if not pos:
                 continue
 
+            owner = info.get("owner") if isinstance(info, dict) else info
+
+            if owner == self.country or owner == self.player_id:
+                helmet_image = "images/шлем зеленый 3.png"
+            else:
+                helmet_image = "images/шлем красный 3.png"
+
             if pos not in self.army_sprite_cache:
-                self.army_sprite_cache[pos] = arcade.Sprite("images/шлем зеленый 3.png", scale=2)
+                self.army_sprite_cache[pos] = arcade.Sprite(helmet_image, scale=2)
                 self.army_sprite_cache[pos].center_x = pos[0]
                 self.army_sprite_cache[pos].center_y = pos[1]
+            else:
+                self.army_sprite_cache[pos].texture = arcade.load_texture(helmet_image)
+
             self.army_sprite_list.append(self.army_sprite_cache[pos])
 
-            # Рисуем цифру количества дивизий
             count = info.get("count", 1) if isinstance(info, dict) else 1
             arcade.draw_text(
                 str(count),
