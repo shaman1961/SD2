@@ -6,6 +6,7 @@ from threading import Thread, Lock, Timer
 from sqlalchemy import create_engine, Column, String
 from sqlalchemy.orm import declarative_base, sessionmaker, scoped_session
 from sqlalchemy.pool import StaticPool
+from flask import render_template
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +22,6 @@ ARMY_COST = 50
 LEVEL_UP_COST = 50
 MOVE_COST = 25
 
-# === БАЗА ДАННЫХ ===
 Base = declarative_base()
 
 class Player(Base):
@@ -56,7 +56,6 @@ def load_players():
         session.close()
     print(f"✅ Загружено {len(players)} игроков из БД ({DB_FILE})")
 
-# === ЗАГРУЗКА ДАННЫХ КАРТЫ ===
 def load_map_data():
     map_data = {}
     for year in [1938, 1941]:
@@ -176,28 +175,44 @@ def sanitize_game_state(game, time_left=None):
     }
 
 def next_player(game):
+    if isinstance(game, str):
+        game = games.get(game)
+        if not game:
+            return
+
     if not game['players']: return
-    try: idx = game['players'].index(game['current_player'])
-    except: idx = -1
+    try:
+        idx = game['players'].index(game['current_player'])
+    except:
+        idx = -1
+
     game['current_player'] = game['players'][(idx + 1) % len(game['players'])]
     game['turn'] += 1
     game['turn_started_at'] = time.time()
-    if game['current_player'].startswith('bot_'):
-        Timer(0.5, process_bot_turn, args=[game['id']]).start()
 
-def process_bot_turn(gid):
-    with lock:
-        game = games.get(gid)
-        if not game or game['state'] != 'playing': return
+    if game['current_player'].startswith('bot_'):
+        process_all_bots(game)
+
+def process_all_bots(game):
+    """Обрабатывает ходы всех ботов подряд, пока очередь не дойдёт до живого игрока"""
+    gid = game['id']
+    max_iterations = len(game['players'])
+    iterations = 0
+
+    while game['current_player'].startswith('bot_') and iterations < max_iterations:
         bot_id = game['current_player']
-        if not bot_id.startswith('bot_'): return
         bot_country = game['countries'].get(bot_id)
         state = game['map_state']
+
         try:
             from ai_controller import AIController
             ai = AIController(
                 country_name=bot_country,
-                country_data={'gold': state['economies'].get(bot_id, {}).get('gold', 100), 'provinces': [n for n, o in state['province_owners'].items() if o == bot_country], 'color': [100, 100, 100]},
+                country_data={
+                    'gold': state['economies'].get(bot_id, {}).get('gold', 100),
+                    'provinces': [n for n, o in state['province_owners'].items() if o == bot_country],
+                    'color': [100, 100, 100]
+                },
                 provinces_data=MAP_DATA.get(game['year'], {}).get('provinces', {}),
                 player_country_name=game['countries'].get(game['host'], ''),
                 all_armies=state['armies']
@@ -205,9 +220,21 @@ def process_bot_turn(gid):
             ai.make_move()
             state['armies'] = ai.all_armies
             state['economies'][bot_id]['gold'] = ai.gold
-            for prov_name in ai.provinces: state['province_owners'][prov_name] = bot_country
-        except Exception as e: print(f"⚠️ Bot error: {e}")
-        Timer(0.5, next_player, args=[gid]).start()
+            for prov_name in ai.provinces:
+                state['province_owners'][prov_name] = bot_country
+        except Exception as e:
+            print(f"⚠️ Bot error: {e}")
+
+        try:
+            idx = game['players'].index(game['current_player'])
+        except:
+            idx = -1
+        game['current_player'] = game['players'][(idx + 1) % len(game['players'])]
+        game['turn'] += 1
+        game['turn_started_at'] = time.time()
+        iterations += 1
+
+    print(f"✅ Обработано {iterations} ботов, текущий игрок: {game['current_player']}")
 
 def start_countdown(gid):
     if gid in games: games[gid].update({'locked': True, 'countdown_started_at': time.time(), 'state': 'counting_down'})
@@ -238,7 +265,6 @@ def add_bots(gid):
             game['map_state']['economies'][bot_id] = {'gold': 100, 'wheat': 0, 'metal': 0, 'wood': 0, 'coal': 0, 'oil': 0, 'army_count': 0}
             occupied.append(country)
 
-# === API ===
 @app.route('/api/health')
 def health(): return jsonify({"status": "ok"})
 
@@ -377,6 +403,10 @@ def start_game_manual(gid):
             return jsonify({"error": "Не все игроки выбрали страны"}), 400
         start_countdown(gid)
     return jsonify({"message": "Game starting", "time_left": COUNTDOWN}), 200
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 def turn_timer():
     while True:

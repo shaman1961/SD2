@@ -959,7 +959,12 @@ class Game(arcade.View):
                 self._sync_with_server()
                 if hasattr(self, 'turn_label'):
                     self.turn_label.text = f"Ход: {result.get('new_state', {}).get('turn', self.turn + 1)}"
-                self._show_waiting_overlay()
+
+                state = self.network.get_game_state()
+                if state:
+                    self._on_server_update(state)
+                else:
+                    self._show_waiting_overlay()
             else:
                 self._show_message("Ошибка завершения хода", (255, 0, 0))
             return
