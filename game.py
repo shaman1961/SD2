@@ -37,7 +37,7 @@ class Game(arcade.View):
         self.player_id = None
         self.game_id = None
 
-        self.army_positions = {}  # {prov_name: {"owner": страна, "count": число}} или старый формат
+        self.army_positions = {}
         self.province_owners = {}
         self.bot_armies = {}
         self.bot_countries = []
@@ -166,15 +166,12 @@ class Game(arcade.View):
             if self.client:
                 self.network = self.client
                 self.player_id = self.client.player_id
-                # game_id получаем из состояния сервера, а не из client
                 state = self.client.get_game_state()
                 if state:
                     self.game_id = state.get('id')
                 else:
                     self.game_id = self.client.game_id
-                print(f"✅ Подключено к серверу: {self.player_id}, игра: {self.game_id}")
         except Exception as e:
-            print(f"⚠️ Не удалось подключиться к серверу: {e}")
             self.is_multiplayer = False
 
     def overview(self):
@@ -182,8 +179,6 @@ class Game(arcade.View):
                 open(f"countries{self.year}.json", "r", encoding="utf-8") as c:
             province_data = json.load(f)
             countries_data = json.load(c)
-
-        print(f"✅ Игра инициализирована (сценарий {self.year})")
 
     def _init_particle_textures(self):
         self.victory_spark_textures = [
@@ -390,10 +385,12 @@ class Game(arcade.View):
         )
         self.manager.add(turn_label_container)
 
-        self.turn_active = True
+        if self.is_multiplayer:
+            self._show_waiting_overlay()
+            self.turn_active = False
+        else:
+            self.turn_active = True
         self.turn_timer = self.turn_time_limit
-
-        self._show_turn_overlay()
 
     def _get_army_count(self, province_name):
         """Безопасно получить количество дивизий в провинции"""
@@ -445,7 +442,6 @@ class Game(arcade.View):
 
         map_state = state.get('map_state', {})
 
-        # Синхронизация экономики
         economy = map_state.get('economies', {}).get(self.player_id, {})
         if economy:
             self.player_country.economy.gold = economy.get('gold', 100)
@@ -456,7 +452,6 @@ class Game(arcade.View):
             self.player_country.economy.oil = economy.get('oil', 0)
             self.player_country.economy.army_count = economy.get('army_count', 0)
 
-        # Синхронизация провинций
         province_owners = map_state.get('province_owners', {})
         province_levels = map_state.get('province_levels', {})
 
@@ -474,7 +469,6 @@ class Game(arcade.View):
             if prov.name in province_levels:
                 prov.level = province_levels[prov.name]
 
-        # Синхронизация армий — новая структура
         armies = map_state.get('armies', {})
         self.army_positions = {}
         for prov_name, info in armies.items():
@@ -483,38 +477,10 @@ class Game(arcade.View):
             else:
                 self.army_positions[prov_name] = {"owner": info, "count": 1}
 
-        # Обновляем UI если открыты панели
         if self.economics_panel_opened:
             self._update_economic_panel()
         if self.province_panel_opened:
             self._update_province_panel()
-
-    def _show_turn_overlay(self):
-        self.turn_blocked = True
-
-        overlay = UILabel(
-            text="⏱ ВАШ ХОД",
-            font_size=72,
-            text_color=(255, 255, 255),
-            bold=True
-        )
-
-        panel = UIBoxLayout(vertical=True)
-        panel.with_background(color=(0, 0, 0, 180))
-        panel.add(overlay)
-
-        anchor = UIAnchorLayout()
-        anchor.add(panel, anchor_x="center", anchor_y="center")
-        self.manager.add(anchor)
-
-        self.turn_overlay_anchor = anchor
-
-        def remove_overlay(dt):
-            if hasattr(self, 'turn_overlay_anchor') and self.manager:
-                self.manager.remove(self.turn_overlay_anchor)
-            self.turn_blocked = False
-
-        arcade.schedule(remove_overlay, 2.0)
 
     def _show_waiting_overlay(self):
         """Показывает сообщение об ожидании хода другого игрока"""
@@ -553,7 +519,6 @@ class Game(arcade.View):
         self.province_panel_opened = True
         self.current_province_name = province_name
 
-        # Ищем данные провинции
         prov_data = None
         owner_color = None
         for prov in self.all_provinces:
@@ -586,7 +551,6 @@ class Game(arcade.View):
         row.add(level_button)
         divider3 = UILabel(text="─" * 30)
 
-        # Кнопка "Тренировать войска" — всегда, если провинция наша
         if is_mine:
             action_button = UIFlatButton(text="Тренировать войска", width=260, height=40)
             action_button.on_click = lambda e: self.buy_army()
@@ -594,7 +558,6 @@ class Game(arcade.View):
             action_button = UIFlatButton(text="Чужая провинция", width=260, height=40)
             action_button.enabled = False
 
-        # Кнопка "Переместить армию" — если есть дивизии
         if army_count > 0 and is_mine:
             move_button = UIFlatButton(text="Переместить армию", width=260, height=40)
             move_button.on_click = lambda e: self.move_army()
@@ -959,12 +922,8 @@ class Game(arcade.View):
                 self._sync_with_server()
                 if hasattr(self, 'turn_label'):
                     self.turn_label.text = f"Ход: {result.get('new_state', {}).get('turn', self.turn + 1)}"
-
-                state = self.network.get_game_state()
-                if state:
-                    self._on_server_update(state)
-                else:
-                    self._show_waiting_overlay()
+                self._show_waiting_overlay()
+                self.turn_active = False
             else:
                 self._show_message("Ошибка завершения хода", (255, 0, 0))
             return
@@ -1003,8 +962,6 @@ class Game(arcade.View):
         if self.tech_panel_opened:
             self._refresh_tech_panel()
 
-        self._show_turn_overlay()
-
     def buy_army(self):
         if self.turn_blocked:
             return
@@ -1022,7 +979,6 @@ class Game(arcade.View):
                 self._show_message(result.get('error', 'Ошибка'), (255, 0, 0))
             return
 
-        # Одиночная игра
         tech_discount = self.player_country.get_tech_bonus("army")
         cost = max(10, int(Economy.ARMY_COST * (1 - tech_discount)))
         if self.player_country.economy.gold >= cost:
@@ -1030,7 +986,6 @@ class Game(arcade.View):
             self.player_country.economy.army_count += 1
             stats_manager.increment_reinforcements(1)
 
-            # Увеличиваем счётчик дивизий
             if province_name in self.army_positions:
                 info = self.army_positions[province_name]
                 if isinstance(info, dict):
@@ -1054,10 +1009,8 @@ class Game(arcade.View):
         with open(f"provinces{self.year}.json", "r", encoding="utf-8") as f:
             provinces_data = json.load(f)
 
-        # Конвертируем армии в имена провинций для AI
         armies_by_name = {}
         for name, info in self.army_positions.items():
-            # army_positions уже использует имена провинций как ключи
             armies_by_name[name] = info
 
         for bot_name in self.bot_countries:
@@ -1082,7 +1035,6 @@ class Game(arcade.View):
 
                 result = bot_controller.make_move(self)
 
-                # Обновляем армии из AI контроллера
                 self.army_positions = bot_controller.all_armies
 
                 self.bot_gold[bot_name] = bot_controller.gold
@@ -1096,7 +1048,6 @@ class Game(arcade.View):
                         (255, 100, 100)
                     )
             except Exception as e:
-                print(f"⚠️ Ошибка в ходе бота {bot_name}: {e}")
                 continue
 
     def _start_bot_turn(self, bot_name: str):
@@ -1135,21 +1086,18 @@ class Game(arcade.View):
         from_name = self.last_prov_name
         to_name = self.prov_name
 
-        # Проверяем армию в исходной провинции
         from_count = self._get_army_count(from_name)
         if from_count == 0:
             self._show_message("Нет армии в исходной провинции!", (255, 0, 0))
             self.moving = False
             return
 
-        # Проверяем соседство
         from neighbors import province_neighbors
         if to_name not in province_neighbors.get(from_name, []):
             self._show_message("Провинции не соседние!", (255, 0, 0))
             self.moving = False
             return
 
-        # МУЛЬТИПЛЕЕР
         if self.is_multiplayer and self.network:
             result = self.network.send_action('move_army', from_position=from_name, to_position=to_name)
             if result.get('success'):
@@ -1165,8 +1113,6 @@ class Game(arcade.View):
             self.moving = False
             return
 
-        # ОДИНОЧНАЯ ИГРА
-        # Стоимость перемещения
         tech_discount = self.player_country.get_tech_bonus("logistics")
         move_cost = max(5, int(Economy.ARMY_COST * (1 - tech_discount)))
 
@@ -1178,7 +1124,6 @@ class Game(arcade.View):
         to_count = self._get_army_count(to_name)
         to_owner = self._get_army_owner(to_name)
 
-        # Определяем цвет целевой провинции
         target_color = None
         for prov in self.all_provinces:
             if prov.name == to_name:
@@ -1188,7 +1133,6 @@ class Game(arcade.View):
         player_color = tuple(self.player_country.color)
 
         if target_color == player_color or to_owner == self.country:
-            # Перемещение в свою провинцию
             if to_name in self.army_positions:
                 if isinstance(self.army_positions[to_name], dict):
                     self.army_positions[to_name]["count"] += from_count
@@ -1200,7 +1144,6 @@ class Game(arcade.View):
             self._show_message(f"Армия перемещена! ({from_count} дивизий)", (0, 255, 255))
 
         elif to_count == 0 and target_color != player_color:
-            # Пустая вражеская провинция — захват без боя
             self.army_positions[to_name] = {"owner": self.country, "count": from_count}
             del self.army_positions[from_name]
             for prov in self.all_provinces:
@@ -1212,7 +1155,6 @@ class Game(arcade.View):
             self._show_message("Провинция захвачена!", (0, 255, 0))
 
         else:
-            # Сражение
             tech_bonus = self.player_country.get_combat_loss_bonus()
 
             if from_count > to_count:
@@ -1354,7 +1296,6 @@ class Game(arcade.View):
         return x, y
 
     def on_update(self, delta_time: float):
-        # Обновление камеры от клавиш (WASD)
         x, y = self.world_camera.position
         if self.keys[arcade.key.W]:
             y += self.pan_speed
@@ -1368,7 +1309,6 @@ class Game(arcade.View):
         x, y = self.clamp_camera(x, y)
         self.world_camera.position = (x, y)
 
-        # Обновление частиц
         emitters_to_remove = []
         for emitter in self.particle_emitters:
             emitter.update(delta_time)
@@ -1378,7 +1318,6 @@ class Game(arcade.View):
         for emitter in emitters_to_remove:
             self.particle_emitters.remove(emitter)
 
-        # ТАЙМЕР ХОДА
         if self.turn_active and not self.turn_blocked:
             self.turn_timer -= delta_time
             if self.turn_timer <= 0:
@@ -1386,23 +1325,18 @@ class Game(arcade.View):
                 self.turn_active = False
                 self.new_turn(auto_end=True)
 
-        # Таймер хода ботов
         if self.bot_turn_active:
             self.bot_turn_timer -= delta_time
             if self.bot_turn_timer <= 0:
                 self.bot_turn_active = False
 
-        # Опрос сервера в мультиплеере (безопасный, в главном потоке)
         if self.is_multiplayer and self.network:
             self.poll_timer += delta_time
             if self.poll_timer >= self.poll_interval:
                 self.poll_timer = 0
-                try:
-                    state = self.network.get_game_state()
-                    if state:
-                        self._on_server_update(state)
-                except Exception as e:
-                    print(f"⚠️ Poll error: {e}")
+                state = self.network.get_game_state()
+                if state:
+                    self._on_server_update(state)
 
     def on_draw(self):
         self.clear()

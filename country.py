@@ -143,7 +143,7 @@ class Country:
             gold=economy_data.get('gold', 100)
         )
         country.economy = Economy.from_dict(economy_data)
-        country.tech_state = data.get('tech_state', country.tech_state)  # <- добавь эту строку
+        country.tech_state = data.get('tech_state', country.tech_state)
         return country
 
     def get_tech_bonus(self, branch: str) -> float:

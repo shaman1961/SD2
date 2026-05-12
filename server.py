@@ -54,24 +54,22 @@ def load_players():
             }
     finally:
         session.close()
-    print(f"✅ Загружено {len(players)} игроков из БД ({DB_FILE})")
 
 def load_map_data():
     map_data = {}
     for year in [1938, 1941]:
+        with open(f"provinces{year}.json", "r", encoding="utf-8") as f:
+            provinces = json.load(f)
+        with open(f"countries{year}.json", "r", encoding="utf-8") as f:
+            countries = json.load(f)
+        neighbors = {}
         try:
-            with open(f"provinces{year}.json", "r", encoding="utf-8") as f:
-                provinces = json.load(f)
-            with open(f"countries{year}.json", "r", encoding="utf-8") as f:
-                countries = json.load(f)
-            neighbors = {}
-            try:
-                with open("neighbors.py", "r", encoding="utf-8") as f:
-                    exec(f.read(), globals())
-                    neighbors = globals().get('province_neighbors', {})
-            except: pass
-            map_data[year] = {'provinces': provinces, 'countries': countries, 'neighbors': neighbors}
-        except Exception as e: print(f"⚠️ Map {year}: {e}")
+            with open("neighbors.py", "r", encoding="utf-8") as f:
+                exec(f.read(), globals())
+                neighbors = globals().get('province_neighbors', {})
+        except:
+            pass
+        map_data[year] = {'provinces': provinces, 'countries': countries, 'neighbors': neighbors}
     return map_data
 
 MAP_DATA = load_map_data()
@@ -168,7 +166,7 @@ def sanitize_game_state(game, time_left=None):
     return {
         'id': game['id'], 'year': game['year'],
         'name': game.get('name', ''),
-        'players': [{'player_id': pid, 'name': players.get(pid, {}).get('name', pid), 'country': game['countries'].get(pid), 'is_host': pid == game['host']} for pid in game['players'] if not pid.startswith('bot_')],
+        'players': [{'player_id': pid, 'name': players.get(pid, {}).get('name', pid), 'country': game['countries'].get(pid), 'is_host': pid == game['host'], 'ready': game.get('ready_status', {}).get(pid, False)} for pid in game['players'] if not pid.startswith('bot_')],
         'turn': game['turn'], 'current_player': game['current_player'], 'state': game['state'],
         'map_state': game.get('map_state', {}), 'bot_mode_enabled': game.get('bot_mode_enabled', False),
         'time_left': time_left, 'server_time': ts()
@@ -194,8 +192,6 @@ def next_player(game):
         process_all_bots(game)
 
 def process_all_bots(game):
-    """Обрабатывает ходы всех ботов подряд, пока очередь не дойдёт до живого игрока"""
-    gid = game['id']
     max_iterations = len(game['players'])
     iterations = 0
 
@@ -204,37 +200,32 @@ def process_all_bots(game):
         bot_country = game['countries'].get(bot_id)
         state = game['map_state']
 
-        try:
-            from ai_controller import AIController
-            ai = AIController(
-                country_name=bot_country,
-                country_data={
-                    'gold': state['economies'].get(bot_id, {}).get('gold', 100),
-                    'provinces': [n for n, o in state['province_owners'].items() if o == bot_country],
-                    'color': [100, 100, 100]
-                },
-                provinces_data=MAP_DATA.get(game['year'], {}).get('provinces', {}),
-                player_country_name=game['countries'].get(game['host'], ''),
-                all_armies=state['armies']
-            )
-            ai.make_move()
-            state['armies'] = ai.all_armies
-            state['economies'][bot_id]['gold'] = ai.gold
-            for prov_name in ai.provinces:
+        from ai_controller import AIController
+        ai = AIController(
+            country_name=bot_country,
+            country_data={
+                'gold': state['economies'].get(bot_id, {}).get('gold', 100),
+                'provinces': [n for n, o in state['province_owners'].items() if o == bot_country],
+                'color': [100, 100, 100]
+            },
+            provinces_data=MAP_DATA.get(game['year'], {}).get('provinces', {}),
+            player_country_name=game['countries'].get(game['host'], ''),
+            all_armies=state['armies'].copy()
+        )
+        ai.make_move()
+        state['armies'] = dict(ai.all_armies)
+        state['economies'][bot_id]['gold'] = ai.gold
+        for prov_name in ai.provinces:
+            if prov_name:
                 state['province_owners'][prov_name] = bot_country
-        except Exception as e:
-            print(f"⚠️ Bot error: {e}")
 
         try:
             idx = game['players'].index(game['current_player'])
         except:
             idx = -1
         game['current_player'] = game['players'][(idx + 1) % len(game['players'])]
-        game['turn'] += 1
         game['turn_started_at'] = time.time()
         iterations += 1
-
-    print(f"✅ Обработано {iterations} ботов, текущий игрок: {game['current_player']}")
 
 def start_countdown(gid):
     if gid in games: games[gid].update({'locked': True, 'countdown_started_at': time.time(), 'state': 'counting_down'})
@@ -337,14 +328,18 @@ def action(gid):
         result = handlers.get(action_type, lambda: {'success': False, 'error': 'Unknown action'})()
     return jsonify(result), 200
 
+
 @app.route('/api/game/<gid>/end_turn', methods=['POST'])
 def end_turn(gid):
-    if not check_auth(): return jsonify({"error": "Invalid secret"}), 403
+    if not check_auth():
+        return jsonify({"error": "Invalid secret"}), 403
     pid = (request.get_json(silent=True) or {}).get('player_id')
     with lock:
         game = games.get(gid)
-        if not game or game['state'] != 'playing': return jsonify({"error": "Invalid game state"}), 400
-        if game['current_player'] != pid: return jsonify({"error": "Not your turn"}), 403
+        if not game or game['state'] != 'playing':
+            return jsonify({"error": "Invalid game state"}), 400
+        if game['current_player'] != pid:
+            return jsonify({"error": "Not your turn"}), 403
         process_end_turn(game); next_player(game)
     return jsonify({"success": True, "new_state": sanitize_game_state(game)}), 200
 
@@ -403,6 +398,20 @@ def start_game_manual(gid):
             return jsonify({"error": "Не все игроки выбрали страны"}), 400
         start_countdown(gid)
     return jsonify({"message": "Game starting", "time_left": COUNTDOWN}), 200
+
+@app.route('/api/game/<gid>/ready', methods=['POST'])
+def toggle_ready(gid):
+    if not check_auth(): return jsonify({"error": "Invalid secret"}), 403
+    pid = (request.get_json(silent=True) or {}).get('player_id')
+    with lock:
+        game = games.get(gid)
+        if not game: return jsonify({"error": "Game not found"}), 404
+        if pid not in game['players']: return jsonify({"error": "Invalid player"}), 400
+        current = game.get('ready_status', {}).get(pid, False)
+        if 'ready_status' not in game:
+            game['ready_status'] = {}
+        game['ready_status'][pid] = not current
+    return jsonify({"ready": game['ready_status'][pid]}), 200
 
 @app.route('/')
 def index():

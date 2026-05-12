@@ -36,8 +36,6 @@ def save_game(game):
     with open(SAVE_FILE, "w", encoding="utf-8") as f:
         json.dump(save_data, f, ensure_ascii=False, indent=2)
 
-    print(f"💾 Игра сохранена (версия {SAVE_VERSION})")
-
 def load_game():
     """Загрузка игры"""
     if not os.path.exists(SAVE_FILE):
@@ -53,7 +51,6 @@ def delete_save():
     """Удалить сохранение игры"""
     if os.path.exists(SAVE_FILE):
         os.remove(SAVE_FILE)
-        print("🗑️ Сохранение удалено")
         return True
     return False
 
@@ -63,15 +60,12 @@ def apply_save_to_game(game, save_data):
 
     game.army_positions = {}
     for pos_str, moved in save_data.get("army_positions", {}).items():
-        try:
-            clean = pos_str.strip("()")
-            parts = clean.split(",")
-            if len(parts) == 2:
-                x = float(parts[0].strip())
-                y = float(parts[1].strip())
-                game.army_positions[(x, y)] = moved
-        except (ValueError, AttributeError, KeyError):
-            pass
+        clean = pos_str.strip("()")
+        parts = clean.split(",")
+        if len(parts) == 2:
+            x = float(parts[0].strip())
+            y = float(parts[1].strip())
+            game.army_positions[(x, y)] = moved
 
     for prov in game.all_provinces:
         if prov.name in save_data.get("province_owners", {}):
@@ -85,9 +79,7 @@ def apply_save_to_game(game, save_data):
     if save_data.get("player_economy") and hasattr(game, 'player_country'):
         from economy import Economy
         game.player_country.economy = Economy.from_dict(save_data["player_economy"])
-        print(f"✅ Экономика загружена: {game.player_country.get_gold()} золота")
 
     if save_data.get("tech_state") and hasattr(game.player_country, 'tech_state'):
         game.player_country.tech_state = save_data["tech_state"]
 
-    print(f"✅ Сохранение загружено (ход {game.turn})")

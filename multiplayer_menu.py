@@ -66,7 +66,6 @@ class MultiplayerMenu(arcade.View):
         try:
             self.rooms = self.client.get_games_list()
         except Exception as e:
-            print(f"Ошибка получения комнат: {e}")
             self.rooms = []
 
     def setup_gui(self):
@@ -171,12 +170,10 @@ class MultiplayerMenu(arcade.View):
     def _join_room_direct(self, room):
         game_id = room.get('id')
         if not game_id:
-            print("❌ Ошибка: нет ID комнаты")
             return
 
         state = self.client._req('GET', f'/api/game/{game_id}/state')
         if not state:
-            print("❌ Не удалось получить состояние комнаты")
             return
 
         game_state = state.json()
@@ -263,7 +260,6 @@ class PlayerRegistrationView(arcade.View):
 
         player_id = self.client.register(self.player_name)
         if player_id:
-            print(f"Зарегистрирован: {player_id}")
             if self.callback:
                 self.callback(player_id, self.player_name)
         else:
@@ -363,13 +359,11 @@ class CreateRoomView(arcade.View):
     def _create_room(self):
         self.room_name = self.name_input.text.strip()
         if not self.room_name:
-            print("Введите название комнаты!")
             return
 
         game_id = self.client.create_game(year=self.scenario_year, turn_time=180)
 
         if not game_id:
-            print("⚠️ Не удалось создать комнату. Возможно, сессия устарела.")
             self.client.player_id = None
             self.window.show_view(PlayerRegistrationView(
                 self.client,
@@ -399,7 +393,7 @@ class CreateRoomView(arcade.View):
             }
             self.window.show_view(MultiplayerLobbyView(self.client, self.player_id, room_data))
         else:
-            print("❌ Снова ошибка создания комнаты")
+            pass
 
     def on_hide_view(self):
         if self.manager:
@@ -441,19 +435,15 @@ class MultiplayerLobbyView(arcade.View):
         self.poll_timer += delta_time
         if self.poll_timer >= self.poll_interval:
             self.poll_timer = 0
-            try:
-                state = self.client.get_game_state()
-                if state:
-                    self._apply_state_update(state)
-            except Exception as e:
-                print(f"⚠️ Lobby poll error: {e}")
+            state = self.client.get_game_state()
+            if state:
+                self._apply_state_update(state)
 
     def _apply_state_update(self, state):
         if not state:
             return
 
         if state.get("state") == "playing":
-            print("🎮 Сервер сообщил: игра запущена!")
             if not self._game_started:
                 self._game_started = True
                 self._start_game()
@@ -543,7 +533,7 @@ class MultiplayerLobbyView(arcade.View):
             player_box.with_padding(top=5, bottom=5, left=5, right=5)
 
             host_mark = "[HOST]" if player.get("is_host", False) else ""
-            ready_mark = "[OK]" if player.get("ready", False) else "[..]"
+            ready_mark = "1" if player.get("ready", False) else "0"
             name = player.get('name', 'Игрок')[:12]
             country_name = player.get("country") or "---"
 
@@ -562,7 +552,7 @@ class MultiplayerLobbyView(arcade.View):
         button_box.with_padding(top=10, bottom=0, left=0, right=0)
 
         if not self.is_ready:
-            ready_btn = UIFlatButton(text="[ ГОТОВ ]", width=350, height=45, style=MAIN_BUTTON_STYLE)
+            ready_btn = UIFlatButton(text="[ГОТОВ]", width=350, height=45, style=MAIN_BUTTON_STYLE)
             ready_btn.on_click = lambda e: self._toggle_ready()
             button_box.add(ready_btn)
 
@@ -669,7 +659,6 @@ class MultiplayerLobbyView(arcade.View):
 
         self.my_country = country
         self.country_selected = True
-        print(f"✅ Выбрана страна: {country}")
 
         success = self.client.join_game(self.game_id, country)
         if success:
@@ -685,23 +674,26 @@ class MultiplayerLobbyView(arcade.View):
     def _toggle_ready(self):
         if not self.my_country:
             return
-        self.is_ready = not self.is_ready
+        self.is_ready = True
+        self.client._req('POST', f'/api/game/{self.game_id}/ready',
+                         json={"player_id": self.player_id})
+        for player in self.players:
+            if player.get("player_id") == self.player_id:
+                player["ready"] = True
+                break
         self.setup_gui()
 
     def _enable_bots(self):
         if self.client.enable_bots():
             self.bot_mode_enabled = True
-            print("🤖 Режим с ботами включён")
 
     def _start_countdown(self):
         """Запуск обратного отсчёта"""
-        print("⏱ Запуск обратного отсчёта...")
         if self.is_host:
             self.client._req('POST', f'/api/game/{self.game_id}/start',
                              json={"player_id": self.player_id})
 
     def _start_game(self):
-        print("🚀 Запуск игры...")
         self.client.game_id = self.game_id
         game_view = game.Game(
             self.year,
