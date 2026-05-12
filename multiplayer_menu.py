@@ -237,7 +237,7 @@ class PlayerRegistrationView(arcade.View):
         )
         settings_box.add(self.name_input)
 
-        register_btn = UIFlatButton(text="ЗАРЕГИСТРИРОВАТЬСЯ", width=350, height=55, style=MAIN_BUTTON_STYLE)
+        register_btn = UIFlatButton(text="ЗАРЕГИСТРИРОВАТЬСЯ", width=400, height=55, style=MAIN_BUTTON_STYLE)
         register_btn.on_click = lambda e: self._register()
         settings_box.add(register_btn)
 
