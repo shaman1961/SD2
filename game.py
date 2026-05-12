@@ -1,3 +1,5 @@
+import json
+import random
 import arcade
 from arcade.gui import (
     UIManager,
@@ -8,14 +10,11 @@ from arcade.gui import (
 )
 from arcade.gui.experimental import UIScrollArea
 from arcade.particles import FadeParticle, Emitter, EmitBurst
-import json
-from collections import Counter
-import random
-import province
 import menu
+import province
 import stats_manager
-from economy import *
 from country import Country
+from economy import *
 
 
 class Game(arcade.View):
@@ -1033,7 +1032,7 @@ class Game(arcade.View):
                     all_armies=armies_by_name
                 )
 
-                result = bot_controller.make_move(self)
+                result = bot_controller.make_move()
 
                 self.army_positions = bot_controller.all_armies
 

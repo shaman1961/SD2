@@ -1,12 +1,14 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import time, random, json, os
+import json
+import random
+import time
 from datetime import datetime
-from threading import Thread, Lock, Timer
+from threading import Thread, Lock
+from flask import Flask, request, jsonify
+from flask import render_template
+from flask_cors import CORS
 from sqlalchemy import create_engine, Column, String
 from sqlalchemy.orm import declarative_base, sessionmaker, scoped_session
 from sqlalchemy.pool import StaticPool
-from flask import render_template
 
 app = Flask(__name__)
 CORS(app)
@@ -75,9 +77,14 @@ def load_map_data():
 MAP_DATA = load_map_data()
 games, players, lock = {}, {}, Lock()
 
-def gen_id(): return f"{int(time.time())}_{random.randint(1000,9999)}"
-def ts(): return datetime.now().isoformat()
-def check_auth(): return (request.get_json(silent=True) or {}).get('secret_code') == SECRET
+def gen_id():
+    return f"{int(time.time())}_{random.randint(1000,9999)}"
+
+def ts():
+    return datetime.now().isoformat()
+
+def check_auth():
+    return (request.get_json(silent=True) or {}).get('secret_code') == SECRET
 
 def init_game_state(year, players_list):
     map_info = MAP_DATA.get(year, {})
@@ -156,11 +163,28 @@ def handle_level_up(game, pid, province_name):
 
 def process_end_turn(game):
     state = game['map_state']
+    map_info = MAP_DATA.get(game['year'], {})
+    provinces_data = map_info.get('provinces', {})
+
+    resource_map = {'Пшеница': 'wheat', 'Металл': 'metal', 'Дерево': 'wood', 'Уголь': 'coal', 'Нефть': 'oil'}
+    production_rates = {1: 0.33, 2: 0.5, 3: 1.0, 4: 2.0}
+
     for pid, econ in state['economies'].items():
         country = game['countries'].get(pid)
-        if not country: continue
-        total_level = sum(state['province_levels'].get(p, 1) for p, o in state['province_owners'].items() if o == country)
+        if not country:
+            continue
+
+        player_provinces = [name for name, owner in state['province_owners'].items() if owner == country]
+
+        total_level = sum(state['province_levels'].get(p, 1) for p in player_provinces)
         econ['gold'] = econ.get('gold', 0) + total_level * 2
+
+        for prov_name in player_provinces:
+            level = state['province_levels'].get(prov_name, 1)
+            resource = provinces_data.get(prov_name, {}).get('resource', '').strip()
+            res_key = resource_map.get(resource)
+            if res_key:
+                econ[res_key] = econ.get(res_key, 0) + production_rates.get(level, 1.0)
 
 def sanitize_game_state(game, time_left=None):
     return {

@@ -34,7 +34,7 @@ class AIController:
                 self.armies.append(name)
                 self.army_counts[name] = count
 
-    def make_move(self, game=None) -> dict:
+    def make_move(self) -> dict:
         """
         Сделать ход бота.
         Приоритеты:

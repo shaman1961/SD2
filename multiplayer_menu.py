@@ -2,7 +2,6 @@ import arcade
 from arcade.gui import UIManager, UIFlatButton, UIAnchorLayout, UIBoxLayout, UIImage, UILabel, UIInputText
 import game
 from network_client import NetworkClient
-import time
 
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
